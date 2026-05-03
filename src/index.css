@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --white:   #FAFAF8;
+  --black:   #0C0C0C;
+  --lime:    #B8FF00;
+  --red:     #FF2D55;
+  --gray:    #888880;
+  --light:   #F0EFEA;
+  --mid:     #D8D7D2;
+  --dark:    #1C1C1A;
+  --border:  2px solid #0C0C0C;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--white); }
+  ::-webkit-scrollbar-thumb { background: var(--black); }
+
+  ::selection { background: var(--lime); color: var(--black); }
+}
+
+/* ─── Components ─────────────────────────────────────────────── */
+@layer components {
+
+  /* ── BRUTALIST CARD ── */
+  .brut-card {
+    background: var(--white);
+    border: var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .brut-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--black);
+  }
+
+  /* Dark variant */
+  .brut-card-dark {
+    background: var(--dark);
+    border: 2px solid var(--black);
+    color: var(--white);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .brut-card-dark:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--lime);
+  }
+
+  /* ── AI TAG — под каждым медиа-элементом ── */
+  .ai-tag {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    color: var(--gray);
+    background: var(--light);
+    border-left: 3px solid var(--lime);
+    margin-top: 8px;
+    padding: 8px 12px;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-brut {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    border: var(--border);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .btn-brut:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0px var(--black);
+  }
+
+  .btn-lime {
+    background: var(--lime);
+    color: var(--black);
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .btn-dark:hover {
+    box-shadow: 5px 5px 0px var(--lime);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--black);
+  }
+
+  /* ── SECTION LABEL ── */
+  .sec-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sec-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--black);
+    flex-shrink: 0;
+  }
+
+  /* ── DISPLAY HEADING ── */
+  .display-xl {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+
+  .display-lg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+
+  /* ── MARQUEE TICKER ── */
+  .ticker-wrap {
+    overflow: hidden;
+    border-top: var(--border);
+    border-bottom: var(--border);
+    background: var(--black);
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    gap: 0;
+    animation: marquee 18s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    color: var(--lime);
+    padding: 0 32px;
+  }
+
+  .ticker-dot {
+    color: var(--red);
+    padding: 0 8px;
+  }
+
+  /* ── TAG CHIP ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--black);
+    background: transparent;
+    color: var(--black);
+  }
+
+  .chip-lime { background: var(--lime); }
+  .chip-red  { background: var(--red); color: var(--white); border-color: var(--red); }
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .brut-card:hover,
+  .brut-card-dark:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .btn-brut:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
