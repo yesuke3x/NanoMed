@@ -1,204 +1,212 @@
 /* ─────────────────────────────────────────────────────────────
-   СТРАНИЦА 04 — ЦЕНТР УПРАВЛЕНИЯ (Лаба 7)
-   Neo-Brutalist flexbox split
-   TODO: замените src заглушки на реальные URL
+   СТРАНИЦА — ЦЕНТР УПРАВЛЕНИЯ
+   • HeyGen аватар (видео из GitHub Releases)
+   • Zapier + Google Sheets — iframe
+   • Чат-бот — iframe
    ───────────────────────────────────────────────────────────── */
 
+const GH_USER = "USERNAME"; // ← TODO: ваш GitHub username
+const AVATAR_VIDEO_URL = `https://github.com/${GH_USER}/NanoMed/releases/download/v1.0/avatar-heygen.mp4`;
+
+// TODO: вставьте реальный embed URL из Zapier (Tables → Embed)
+const ZAPIER_EMBED_URL = "";
+
+// TODO: вставьте embed URL чат-бота (например, Chatbase, Tidio, Botpress)
+const CHATBOT_EMBED_URL = "";
+
+const SYSTEM_PROMPT = `Ты — медицинский ИИ-ассистент клиники NANO MED.
+Специализируешься на нанотехнологиях в медицине.
+Отвечай профессионально, но дружелюбно.
+Язык: русский. Всегда предлагай записаться на приём.`;
+
 export default function Control() {
-  // TODO: вставьте реальный URL embed из Google Sheets
-  const GOOGLE_SHEETS_URL = "";
-  // TODO: вставьте реальный URL видео HeyGen-аватара
-  const AVATAR_VIDEO_URL  = "";
-
-  const tableHeaders = ["ID пациента", "Нанобот", "Статус", "Биомаркер", "Обновлено"];
-
   return (
-    <div className="min-h-screen bg-bio-white pt-14">
+    <div className="min-h-screen bg-nano-bg text-nano-white pt-24 pb-16">
 
-      {/* ── Page Header ── */}
-      <div className="border-b-2 border-bio-black bg-bio-black">
-        <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      {/* Header */}
+      <div className="border-b border-nano-cyan/20 bg-gradient-to-r from-nano-bg via-nano-bgAlt to-nano-bg">
+        <div className="max-w-screen-xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="sec-label" style={{ color: "#B8FF00" }}>
-              <span className="inline-block w-6 h-0.5" style={{ background: "#B8FF00" }} />
-              Лаба 07 · Flexbox
-            </span>
-            <h1 className="font-display text-[clamp(2.5rem,7vw,6rem)] text-bio-white leading-none mt-2">
-              Центр<br />
-              <span className="text-bio-lime">Управления</span>
+            <span className="nano-label">Центр управления · Live Feed</span>
+            <h1 className="display-xl mt-3">
+              Мониторинг <span className="text-glow-cyan">данных</span>
             </h1>
+            <p className="text-nano-white/60 text-base mt-3 max-w-xl">
+              ИИ-ассистент HeyGen, Zapier-агент и чат-бот в одной операционной панели.
+            </p>
           </div>
-          <p className="text-bio-gray text-sm max-w-xs leading-relaxed">
-            Мониторинг состояния пациентов в реальном времени.
-            ИИ-ассистент HeyGen + интеграция Google Sheets.
+          <div className="glass-card px-5 py-4 flex items-center gap-3">
+            <span className="online-dot" />
+            <div>
+              <p className="font-mono text-[10px] text-nano-white/55 tracking-widest">СИСТЕМА</p>
+              <p className="font-mono text-sm text-nano-green">● Данные обновляются</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ════════════ HEYGEN AVATAR ════════════ */}
+      <section className="max-w-screen-xl mx-auto px-6 py-12 grid lg:grid-cols-[1.2fr_1fr] gap-6 items-stretch">
+        <div className="neon-card p-0 overflow-hidden flex flex-col">
+          <div className="px-5 py-3 flex items-center justify-between border-b border-nano-cyan/25 bg-nano-bgAlt">
+            <span className="nano-chip nano-chip-green"><span className="online-dot" /> AI Аватар · Live</span>
+            <span className="font-mono text-[10px] text-nano-white/55 tracking-widest">HeyGen · v2</span>
+          </div>
+          <div className="relative bg-nano-bg aspect-video">
+            <video
+              controls
+              preload="metadata"
+              className="w-full h-full object-cover"
+              poster="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&h=506&fit=crop"
+            >
+              {/* TODO: загрузите avatar-heygen.mp4 в GitHub Releases v1.0 */}
+              <source src={AVATAR_VIDEO_URL} type="video/mp4" />
+            </video>
+            {/* DNA decorative orbit */}
+            <div className="absolute top-3 right-3 w-10 h-10 rounded-full border border-nano-cyan/40 animate-spin-slow grid place-items-center">
+              <span className="w-1.5 h-1.5 bg-nano-cyan rounded-full shadow-glow-cyan-strong" />
+            </div>
+          </div>
+          <div className="p-5 ai-tag">
+            🤖 HeyGen · Промпт озвучки: <em>«Здравствуйте! Я — нейроаватар клиники NANO MED.
+            В реальном времени мониторю 247 пациентов и 1 842 нанобота. Чем могу помочь?»</em>
+          </div>
+        </div>
+
+        <div className="glass-card p-6 flex flex-col gap-4">
+          <span className="nano-label">Brief</span>
+          <h3 className="font-display text-2xl text-nano-white tracking-wide">BioBot Assistant</h3>
+          <p className="text-sm text-nano-white/65 leading-relaxed">
+            Виртуальный консультант клиники. Отвечает на типовые вопросы пациентов,
+            сопровождает к нужной услуге и записывает на приём через интеграцию с CRM.
+          </p>
+
+          <div className="grid grid-cols-2 gap-3 mt-2">
+            <div className="border border-nano-cyan/30 rounded p-3 bg-nano-bg/40">
+              <p className="font-mono text-[9px] text-nano-white/55 uppercase tracking-widest">Пациентов</p>
+              <p className="stat-number text-2xl mt-1">247</p>
+            </div>
+            <div className="border border-nano-cyan/30 rounded p-3 bg-nano-bg/40">
+              <p className="font-mono text-[9px] text-nano-white/55 uppercase tracking-widest">Наноботов</p>
+              <p className="stat-number text-2xl mt-1">1 842</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════ ZAPIER + GOOGLE SHEETS ════════════ */}
+      <section className="max-w-screen-xl mx-auto px-6 py-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-5">
+          <div>
+            <span className="nano-label">⚡ Zapier · Google Sheets</span>
+            <h2 className="display-lg mt-2">Мониторинг в реальном времени</h2>
+          </div>
+          <p className="text-sm text-nano-white/55 max-w-md">
+            ИИ-агент Zapier мониторит новости нанотехнологий и автоматически
+            обновляет таблицу данных каждые 30 минут.
           </p>
         </div>
-      </div>
 
-      {/* ══════════════════════════════════
-          FLEXBOX SPLIT
-      ══════════════════════════════════ */}
-      <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row border-b-2 border-bio-black">
-
-        {/* LEFT — AI Avatar (40%) */}
-        <div className="lg:w-[40%] border-b-2 lg:border-b-0 lg:border-r-2 border-bio-black flex flex-col">
-
-          {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b-2 border-bio-black bg-bio-light">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-bio-lime animate-pulse" />
-              <span className="font-mono text-[10px] text-bio-gray tracking-widest uppercase">AI Ассистент / Онлайн</span>
-            </div>
-            <span className="chip chip-lime">HeyGen</span>
-          </div>
-
-          {/* Video */}
-          <div className="relative bg-bio-black border-b-2 border-bio-black">
-            {AVATAR_VIDEO_URL ? (
-              <video
-                controls
-                className="w-full aspect-video object-cover"
-                poster="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&h=338&fit=crop"
-              >
-                <source src={AVATAR_VIDEO_URL} type="video/mp4" />
-              </video>
-            ) : (
-              /* Заглушка */
-              <div className="w-full aspect-video flex flex-col items-center justify-center bg-bio-dark">
-                <div className="w-20 h-20 border-2 border-bio-lime flex items-center justify-center text-4xl mb-4">
-                  🤖
-                </div>
-                <p className="font-mono text-[10px] text-bio-gray text-center px-6 tracking-widest">
-                  {/* TODO: добавьте AVATAR_VIDEO_URL из HeyGen */}
-                  [ Вставьте URL HeyGen-видео<br />в переменную AVATAR_VIDEO_URL ]
+        <div className="iframe-frame">
+          {ZAPIER_EMBED_URL ? (
+            <iframe
+              src={ZAPIER_EMBED_URL}
+              width="100%"
+              height={600}
+              frameBorder={0}
+              loading="lazy"
+              title="Zapier · AI-агент мониторинга"
+              style={{ background: "transparent", display: "block" }}
+            />
+          ) : (
+            <div className="aspect-[16/9] md:h-[480px] grid place-items-center text-center px-6 bg-nano-card relative overflow-hidden">
+              <div className="absolute inset-0 nano-grid-bg opacity-40" />
+              <div className="relative z-10 space-y-4">
+                <span className="text-5xl block">⚡</span>
+                <p className="font-display text-2xl text-nano-cyan tracking-wide">Zapier + Google Sheets</p>
+                <p className="font-mono text-xs text-nano-white/55 max-w-md">
+                  Вставьте embed URL в переменную <code className="text-nano-green">ZAPIER_EMBED_URL</code>
+                  &nbsp;в файле <code className="text-nano-green">src/pages/Control.tsx</code>
+                </p>
+                <p className="font-mono text-[10px] text-nano-white/40">
+                  {/* TODO: Replace with actual Zapier iframe src */}
+                  &lt;!-- TODO: Replace with actual Zapier iframe src --&gt;
                 </p>
               </div>
-            )}
+            </div>
+          )}
+        </div>
+
+        <div className="glass-card p-4 mt-4 ai-tag">
+          ⚡ Zapier · Промпт-инструкция агента: <em>«Каждые 30 минут проверяй RSS-ленту
+          arxiv.org/medical-nanotech, фильтруй по ключевым словам "nanorobot diagnosis",
+          добавляй новые публикации в Google Sheets с колонками: дата, заголовок, авторы, ссылка»</em>
+        </div>
+      </section>
+
+      {/* ════════════ CHATBOT ════════════ */}
+      <section className="max-w-screen-xl mx-auto px-6 py-12 grid lg:grid-cols-[1fr_1.2fr] gap-6 items-stretch">
+
+        {/* Bot personality card */}
+        <div className="glass-card p-6 space-y-5">
+          <span className="nano-label">🤖 ИИ-ассистент NanoMed</span>
+          <h3 className="font-display text-2xl text-nano-white tracking-wide">Личность бота</h3>
+          <p className="text-sm text-nano-white/65 leading-relaxed">
+            Бот специализируется на вопросах нанотехнологий в медицине.
+            Помогает пациентам понять процедуры, записаться на консультацию
+            и получить информацию о лечении.
+          </p>
+
+          <div>
+            <p className="font-mono text-[10px] text-nano-cyan tracking-widest uppercase mb-2">
+              System Prompt
+            </p>
+            <pre className="font-mono text-[11px] text-nano-green bg-nano-bg/60 border border-nano-cyan/25 rounded p-4 whitespace-pre-wrap leading-relaxed">
+{SYSTEM_PROMPT}
+            </pre>
           </div>
 
-          {/* AI Tag */}
-          <div className="px-5 pt-4 pb-2">
-            <div className="ai-tag">
-              Model: HeyGen | Prompt: Professional medical AI assistant avatar, white lab coat,
-              neutral background, saying: "Welcome to the future of diagnostics. I am your
-              BioBot assistant, monitoring 247 patients in real time."
-            </div>
-          </div>
-
-          {/* Info + stats */}
-          <div className="p-5 space-y-4 flex-1 flex flex-col justify-between bg-bio-white">
-            <div>
-              <h3 className="font-display text-3xl text-bio-black">BioBot Assistant</h3>
-              {/* TODO: добавьте реальный текст приветствия */}
-              <p className="text-sm text-bio-gray mt-2 italic">
-                [ Вставьте текст который произносит аватар / краткое описание функций ]
-              </p>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-0 border-2 border-bio-black">
-              {[
-                { label: "Пациентов", value: "247",   bg: "bg-bio-lime",  text: "text-bio-black" },
-                { label: "Роботов",   value: "1 842", bg: "bg-bio-black", text: "text-bio-lime"  },
-              ].map((stat, i) => (
-                <div key={stat.label} className={`${stat.bg} ${stat.text} p-4 ${i === 0 ? "border-r-2 border-bio-black" : ""}`}>
-                  <p className="font-mono text-[9px] tracking-widest uppercase opacity-70">{stat.label}</p>
-                  <p className="font-display text-3xl mt-1">{stat.value}</p>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="nano-chip">русский</span>
+            <span className="nano-chip nano-chip-green">медицинский</span>
+            <span className="nano-chip nano-chip-purple">nano-tech</span>
           </div>
         </div>
 
-        {/* RIGHT — Google Sheets (60%) */}
-        <div className="lg:w-[60%] flex flex-col min-h-[560px]">
-
-          {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b-2 border-bio-black bg-bio-light">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-bio-red animate-pulse" />
-              <span className="font-mono text-[10px] text-bio-gray tracking-widest uppercase">
-                Мониторинг пациентов — Google Sheets
-              </span>
-            </div>
-            {/* TODO: замените # на реальную ссылку Google Sheets */}
-            <a
-              href={GOOGLE_SHEETS_URL || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[10px] text-bio-gray hover:text-bio-black transition-colors tracking-widest uppercase border-b border-bio-mid hover:border-bio-black"
-            >
-              Открыть ↗
-            </a>
+        {/* Chatbot iframe */}
+        <div className="iframe-frame flex flex-col">
+          <div className="px-4 py-3 flex items-center justify-between border-b border-nano-cyan/25 bg-nano-bgAlt">
+            <span className="nano-chip nano-chip-green"><span className="online-dot" /> Бот онлайн</span>
+            <span className="font-mono text-[10px] text-nano-white/55">/chat/v1</span>
           </div>
 
-          {/* Iframe or mock table */}
-          <div className="flex-1 relative overflow-auto">
-            {GOOGLE_SHEETS_URL ? (
-              <iframe
-                src={GOOGLE_SHEETS_URL}
-                title="Мониторинг пациентов"
-                className="w-full h-full min-h-[480px] border-0"
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col">
-                {/* Table header */}
-                <div className="grid grid-cols-5 border-b-2 border-bio-black bg-bio-black">
-                  {tableHeaders.map((h) => (
-                    <div key={h} className="px-4 py-3 font-mono text-[9px] text-bio-lime tracking-widest uppercase border-r border-[rgba(255,255,255,0.08)] last:border-r-0">
-                      {h}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Rows */}
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`grid grid-cols-5 border-b border-bio-mid transition-colors hover:bg-bio-light ${i % 2 === 0 ? "" : "bg-bio-light/50"}`}
-                  >
-                    <div className="px-4 py-3 font-mono text-xs text-bio-black border-r border-bio-mid">
-                      PT-{String(1001 + i).padStart(4, "0")}
-                    </div>
-                    <div className="px-4 py-3 font-mono text-xs text-bio-black border-r border-bio-mid">
-                      NS-α{i + 1}
-                    </div>
-                    <div className="px-4 py-3 border-r border-bio-mid">
-                      <span className={`chip text-[9px] ${i === 2 ? "chip-red" : "chip-lime"}`}>
-                        {i === 2 ? "Тревога" : "Норма"}
-                      </span>
-                    </div>
-                    <div className="px-4 py-3 font-mono text-xs text-bio-gray border-r border-bio-mid">
-                      {(0.8 + Math.random() * 0.4).toFixed(2)} ng/mL
-                    </div>
-                    <div className="px-4 py-3 font-mono text-xs text-bio-gray">
-                      {new Date(Date.now() - i * 3600000).toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" })}
-                    </div>
-                  </div>
-                ))}
-
-                {/* Placeholder hint */}
-                <div className="flex-1 flex items-center justify-center p-6 bg-bio-light">
-                  <p className="font-mono text-[10px] text-bio-gray text-center tracking-widest">
-                    {/* TODO: вставьте Google Sheets embed URL в GOOGLE_SHEETS_URL */}
-                    [ Вставьте URL Google Sheets в переменную GOOGLE_SHEETS_URL ]
-                  </p>
-                </div>
+          {CHATBOT_EMBED_URL ? (
+            <iframe
+              src={CHATBOT_EMBED_URL}
+              width="100%"
+              height={500}
+              frameBorder={0}
+              title="NanoMed AI Чат-бот"
+              style={{ background: "transparent", display: "block", flex: 1 }}
+            />
+          ) : (
+            <div className="flex-1 min-h-[420px] grid place-items-center text-center px-6 bg-nano-card relative overflow-hidden">
+              <div className="absolute inset-0 nano-grid-bg opacity-40" />
+              <div className="relative z-10 space-y-4 max-w-sm">
+                <span className="text-5xl block">💬</span>
+                <p className="font-display text-xl text-nano-cyan">Чат-бот placeholder</p>
+                <p className="font-mono text-xs text-nano-white/55">
+                  Вставьте embed URL в <code className="text-nano-green">CHATBOT_EMBED_URL</code>
+                </p>
+                <p className="font-mono text-[10px] text-nano-white/40">
+                  {/* TODO: Replace with actual chatbot iframe src */}
+                  &lt;!-- TODO: Replace with actual chatbot iframe src --&gt;
+                </p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
-      </div>
-
-      {/* TODO: recharts графики */}
-      <div className="max-w-screen-xl mx-auto border-x-2 border-b-2 border-bio-black p-8 text-center bg-bio-light">
-        <p className="font-mono text-xs text-bio-gray tracking-widest">
-          [ Блок с графиками динамики биомаркеров — доработайте с recharts ]
-        </p>
-      </div>
-
+      </section>
     </div>
   );
 }

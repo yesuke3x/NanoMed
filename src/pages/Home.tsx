@@ -1,221 +1,259 @@
-/* ─────────────────────────────────────────────────────────────
-   СТРАНИЦА 01 — ГЛАВНАЯ
-   Neo-Brutalist / Editorial дизайн
-   TODO: замените src на реальные файлы (hero.jpg, soundtrack.mp3)
-   ───────────────────────────────────────────────────────────── */
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+/* ─── Анимированный счётчик чисел ───────────────────────────── */
+function CountUp({ to, suffix = "", duration = 1400 }: { to: number; suffix?: string; duration?: number }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - t, 3);
+            setVal(Math.round(to * eased));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [to, duration]);
+
+  return <span ref={ref}>{val.toLocaleString("ru-RU")}{suffix}</span>;
+}
+
+const STATS = [
+  { v: 4,    suffix: "+",   l: "Врача-специалиста" },
+  { v: 6,    suffix: "",    l: "Услуг и процедур"  },
+  { v: 7,    suffix: "/7",  l: "Дней в неделю"     },
+  { v: 10,   suffix: "+",   l: "Лет на рынке"      },
+];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-bio-white">
+    <div className="bg-nano-bg text-nano-white">
 
-      {/* ════════════════════════════════════
-          HERO — полноэкранный
-      ════════════════════════════════════ */}
-      <section className="pt-14 border-b-2 border-bio-black">
-        <div className="max-w-screen-xl mx-auto">
+      {/* ════════════ HERO ════════════ */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
 
-          {/* Top label strip */}
-          <div className="flex items-center justify-between px-6 py-3 border-b-2 border-bio-black bg-bio-light">
-            <span className="sec-label">ИКТ · Нархоз 2026</span>
-            <span className="chip chip-lime">Экзаменационный проект</span>
+        {/* Animated grid */}
+        <div
+          className="absolute inset-0 nano-grid-bg opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+        />
+        {/* Radial gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,128,255,0.18),transparent_60%)]" />
+
+        {/* Floating ring */}
+        <div className="absolute right-[-120px] top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
+          <div className="relative w-[520px] h-[520px] animate-spin-slow">
+            <div className="absolute inset-0 rounded-full border border-nano-cyan/30" />
+            <div className="absolute inset-8 rounded-full border border-nano-cyan/15" />
+            <div className="absolute inset-20 rounded-full border-l border-nano-cyan/40" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-nano-cyan shadow-glow-cyan-strong" />
+            <div className="absolute bottom-8 right-12 w-3 h-3 rounded-full bg-nano-green shadow-glow-green" />
           </div>
+        </div>
 
-          {/* Main hero grid */}
-          <div className="grid lg:grid-cols-[1fr_420px]">
+        {/* Floating particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[12, 28, 55, 70, 82].map((left, i) => (
+            <span
+              key={i}
+              className="absolute block w-1 h-1 rounded-full bg-nano-cyan animate-float"
+              style={{
+                left: `${left}%`,
+                top: `${20 + ((i * 13) % 60)}%`,
+                animationDelay: `${i * 0.7}s`,
+                boxShadow: "0 0 8px rgba(0,245,255,0.8)",
+              }}
+            />
+          ))}
+        </div>
 
-            {/* LEFT — image */}
-            <div className="relative border-r-2 border-bio-black overflow-hidden min-h-[440px] lg:min-h-[520px]">
-              {/* TODO: hero.jpg — ваш AI-рендер из Nano Banana 2 */}
-              <img
-                src="/hero.jpg"
-                alt="Нанобот AI-визуализация"
-                className="w-full h-full object-cover absolute inset-0"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&h=600&fit=crop";
-                }}
-              />
-              {/* Dark overlay */}
-              <div className="absolute inset-0 bg-bio-black/30" />
+        <div className="relative z-10 max-w-screen-xl mx-auto px-6 py-16 grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center w-full">
 
-              {/* Overlay label */}
-              <div className="absolute bottom-0 left-0 right-0 bg-bio-lime px-6 py-3 border-t-2 border-bio-black">
-                <div className="ai-tag" style={{ marginTop: 0, background: "transparent", borderColor: "#0C0C0C" }}>
-                  Model: Nano Banana 2 | Prompt: Hyper-realistic microscopic 3D render of a glowing
-                  nanobot navigating human bloodstream, bioluminescent particles, dark medical background
-                </div>
+          {/* Left: Text */}
+          <div className="space-y-7 animate-slide-up">
+            <div className="inline-flex items-center gap-3 px-4 py-1.5 glass-card rounded-full">
+              <span className="online-dot" />
+              <span className="font-mono text-[11px] text-nano-cyan tracking-widest uppercase">
+                Нанотехнологии · Медицина 2077
+              </span>
+            </div>
+
+            <h1 className="display-xl">
+              Микро<span className="text-glow-cyan">роботы</span>-<br />
+              диагносты:<br />
+              <span className="text-nano-cyan">медицина наноуровня</span>
+            </h1>
+
+            <p className="text-lg text-nano-white/65 max-w-xl leading-relaxed">
+              Революция в диагностике. Нано-роботы размером 100 нм исследуют организм
+              изнутри, обнаруживают опухоли на ранней стадии и доставляют препараты
+              точно в поражённую зону.
+            </p>
+
+            {/* Author cards */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <div className="glass-card px-4 py-2.5">
+                <p className="font-mono text-[9px] text-nano-cyan tracking-widest uppercase mb-0.5">Студент</p>
+                {/* TODO: ФИО — заполните своими данными */}
+                <p className="font-mono text-sm text-nano-green">Ким В. В.</p>
+              </div>
+              <div className="glass-card px-4 py-2.5">
+                <p className="font-mono text-[9px] text-nano-cyan tracking-widest uppercase mb-0.5">Преподаватель</p>
+                <p className="font-mono text-sm text-nano-green">ст. преп. Неверова Е. Г.</p>
               </div>
             </div>
 
-            {/* RIGHT — text */}
-            <div className="flex flex-col justify-between p-8 lg:p-10 bg-bio-white min-h-[440px]">
-              <div className="space-y-6">
-                {/* Issue number */}
-                <p className="font-mono text-xs text-bio-gray tracking-widest border-b border-bio-mid pb-3">
-                  VOL. 01 — 2026
-                </p>
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Link to="/control" className="btn-neon btn-neon-primary">
+                Записаться на диагностику <span aria-hidden>→</span>
+              </Link>
+              <Link to="/catalog" className="btn-neon btn-neon-outline">
+                Посмотреть услуги
+              </Link>
+            </div>
+          </div>
 
-                {/* Heading */}
-                <h1 className="display-lg text-bio-black">
-                  Нанотех<span className="text-bio-red">:</span><br />
-                  Будущее<br />
-                  <span className="bg-bio-lime px-1">Внутри нас</span>
-                </h1>
-
-                {/* Lead */}
-                <p className="text-sm text-bio-gray leading-relaxed">
-                  Микророботы-диагносты — автономные системы 2026&nbsp;года
-                  для выявления патологий на клеточном уровне в реальном времени.
-                </p>
-
-                {/* TODO: добавьте 2–3 предложения о проекте */}
-                <p className="text-sm text-bio-mid italic border-l-4 border-bio-mid pl-4">
-                  [ Введение в проект — доработайте этот блок ]
-                </p>
+          {/* Right: Holographic console mock */}
+          <div className="relative animate-fade-in">
+            <div className="glass-card p-6 space-y-4 scan-overlay">
+              <div className="flex items-center justify-between">
+                <span className="nano-chip nano-chip-green"><span className="online-dot" /> live</span>
+                <span className="font-mono text-[10px] text-nano-white/45">// SYS:0xA7-CORE</span>
+              </div>
+              <div>
+                <p className="font-mono text-[10px] text-nano-white/45 mb-1">// nanobot.status</p>
+                <p className="font-display text-3xl text-nano-cyan">SCANNING…</p>
+                <p className="font-mono text-[11px] text-nano-green mt-1">→ 1 842 единиц активны</p>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-0 border-t-2 border-bio-black mt-8">
+              <div className="space-y-2">
                 {[
-                  { v: "< 50нм",  l: "размер" },
-                  { v: "99.3%",   l: "точность" },
-                  { v: "2026",    l: "год" },
-                ].map((s, i) => (
-                  <div
-                    key={s.l}
-                    className={`p-4 ${i < 2 ? "border-r-2 border-bio-black" : ""}`}
-                  >
-                    <p className="font-display text-3xl text-bio-black">{s.v}</p>
-                    <p className="font-mono text-[10px] text-bio-gray tracking-widest uppercase mt-1">{s.l}</p>
+                  { l: "Кровоток", v: 96 },
+                  { l: "Лимфа",    v: 71 },
+                  { l: "ЦНС",      v: 58 },
+                ].map((row) => (
+                  <div key={row.l}>
+                    <div className="flex justify-between font-mono text-[10px] text-nano-white/55">
+                      <span>{row.l}</span>
+                      <span className="text-nano-cyan">{row.v}%</span>
+                    </div>
+                    <div className="h-1 bg-nano-bg/60 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-nano-cyan shadow-[0_0_8px_rgba(0,245,255,0.7)]"
+                        style={{ width: `${row.v}%` }}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
 
-          {/* Bottom CTA strip */}
-          <div className="flex flex-col sm:flex-row border-t-2 border-bio-black divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-bio-black">
-            <a href="/catalog" className="btn-brut btn-lime flex-1 justify-center py-5 text-center border-0 rounded-none font-display text-xl tracking-widest">
-              Изучить каталог →
-            </a>
-            <a href="/gallery" className="btn-brut btn-dark flex-1 justify-center py-5 text-center border-0 rounded-none font-display text-xl tracking-widest">
-              Медиа-галерея
-            </a>
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <div className="border border-nano-cyan/25 rounded p-2">
+                  <p className="font-mono text-[9px] text-nano-white/45 uppercase">Точность</p>
+                  <p className="font-display text-nano-cyan text-xl">99.3<span className="text-xs">%</span></p>
+                </div>
+                <div className="border border-nano-cyan/25 rounded p-2">
+                  <p className="font-mono text-[9px] text-nano-white/45 uppercase">Размер</p>
+                  <p className="font-display text-nano-cyan text-xl">100<span className="text-xs"> нм</span></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          TICKER
-      ════════════════════════════════════ */}
-      <div className="ticker-wrap">
-        <div className="ticker-inner">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="flex items-center">
-              <span className="ticker-item">ДИАГНОСТИКА НА КЛЕТОЧНОМ УРОВНЕ</span>
-              <span className="ticker-dot">✦</span>
-              <span className="ticker-item">НАНО-РОБОТЫ 2026</span>
-              <span className="ticker-dot">✦</span>
-              <span className="ticker-item">БИОМАРКЕРЫ В РЕАЛЬНОМ ВРЕМЕНИ</span>
-              <span className="ticker-dot">✦</span>
-            </span>
+      {/* ════════════ STATS ════════════ */}
+      <section className="relative border-y border-nano-cyan/20 bg-gradient-to-r from-nano-bgAlt via-nano-card to-nano-bgAlt">
+        <div className="max-w-screen-xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div key={s.l} className="glass-card p-6 text-center group">
+              <div className="w-12 h-12 mx-auto mb-3 grid place-items-center rounded-full border border-nano-cyan/40 group-hover:shadow-glow-cyan transition-all">
+                <span className="text-nano-cyan text-xl">◈</span>
+              </div>
+              <p className="stat-number">
+                <CountUp to={s.v} suffix={s.suffix} />
+              </p>
+              <p className="font-mono text-[10px] text-nano-white/55 tracking-widest uppercase mt-2">
+                {s.l}
+              </p>
+            </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* ════════════════════════════════════
-          AUDIO
-      ════════════════════════════════════ */}
-      <section className="border-b-2 border-bio-black">
-        <div className="max-w-screen-xl mx-auto grid md:grid-cols-[280px_1fr]">
-          {/* Label */}
-          <div className="p-8 border-b-2 md:border-b-0 md:border-r-2 border-bio-black bg-bio-black flex flex-col justify-center gap-4">
-            <span className="chip" style={{ borderColor: "#B8FF00", color: "#B8FF00", background: "transparent" }}>
-              AUDIO
-            </span>
-            <p className="font-display text-4xl text-bio-lime leading-none">AMBIENT<br />TRACK</p>
-            <p className="font-mono text-[10px] text-bio-gray tracking-widest">Suno AI · NanoMed OST</p>
+      {/* ════════════ AUDIO BLOCK ════════════ */}
+      <section className="relative">
+        <div className="max-w-screen-xl mx-auto px-6 py-16 grid md:grid-cols-[280px_1fr] gap-6 items-stretch">
+          <div className="glass-card p-6 flex flex-col justify-center gap-3">
+            <span className="nano-chip">◈ Audio · Suno AI</span>
+            <p className="font-display text-3xl text-nano-cyan">AMBIENT<br/>OST</p>
+            <p className="font-mono text-[10px] text-nano-white/55 tracking-widest">Фоновая музыка / NanoMed</p>
           </div>
 
-          {/* Player */}
-          <div className="p-8 flex flex-col justify-center gap-4 bg-bio-light">
-            {/* TODO: замените src на ваш mp3 из Suno AI */}
-            <audio
-              controls
-              className="w-full"
-              style={{ accentColor: "#B8FF00" }}
-            >
+          <div className="glass-card p-6 flex flex-col justify-center gap-3">
+            <audio controls className="w-full" style={{ accentColor: "#00F5FF" }}>
+              {/* TODO: загрузите .mp3 в GitHub Releases v1.0 и замените src */}
               <source src="/audio/soundtrack.mp3" type="audio/mpeg" />
-              <source src="/audio/soundtrack.ogg" type="audio/ogg" />
               Ваш браузер не поддерживает HTML5 audio.
             </audio>
-
             <div className="ai-tag">
-              Model: Suno AI | Prompt: Minimalist ambient electronic, sterile medical atmosphere,
-              deep pulsing bass, high-frequency synthetic tones, futuristic sci-fi soundscape,
-              no lyrics, 90 BPM, key: D minor
+              🎵 Suno AI · Промпт: <em>ambient cyberpunk medical, slow BPM 80, synthesizer pads,
+              futuristic hospital atmosphere, no lyrics, key: D minor</em>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ════════════════════════════════════
-          HOW IT WORKS — 3 шага
-          TODO: заполните реальным текстом
-      ════════════════════════════════════ */}
-      <section className="border-b-2 border-bio-black">
-        <div className="max-w-screen-xl mx-auto">
-
-          {/* Section header */}
-          <div className="px-6 py-5 border-b-2 border-bio-black flex items-center justify-between">
-            <span className="sec-label">Принцип работы</span>
-            <p className="font-display text-3xl text-bio-black">КАК ЭТО РАБОТАЕТ?</p>
+      {/* ════════════ HOW IT WORKS ════════════ */}
+      <section className="relative">
+        <div className="max-w-screen-xl mx-auto px-6 py-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <span className="nano-label">Принцип работы</span>
+              <h2 className="display-lg mt-3">Как это работает?</h2>
+            </div>
+            <p className="text-nano-white/55 text-sm max-w-md">
+              Три фазы протокола: введение, навигация и сбор биомаркеров с передачей
+              в облачную систему мониторинга.
+            </p>
           </div>
 
-          {/* 3 steps */}
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-2 divide-bio-black">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              {
-                step: "01",
-                title: "Введение",
-                bg: "bg-bio-white",
-                accent: "bg-bio-lime",
-                // TODO: замените placeholder на реальное описание
-                body: "[ Опишите способ введения микроробота в организм — инъекция, ингаляция и т.д. ]",
-              },
-              {
-                step: "02",
-                title: "Навигация",
-                bg: "bg-bio-black",
-                accent: "bg-bio-red",
-                body: "[ Опишите механизм навигации — магнитное поле, биохимические маркеры и т.д. ]",
-              },
-              {
-                step: "03",
-                title: "Диагностика",
-                bg: "bg-bio-lime",
-                accent: "bg-bio-black",
-                body: "[ Опишите процесс сбора данных и передачи результатов — сенсоры, протоколы ]",
-              },
-            ].map((card) => (
-              <div key={card.step} className={`${card.bg} p-8 space-y-5`}>
+              { num: "01", title: "Инъекция", body: "Микророботы вводятся внутривенно. Биосовместимая оболочка из кремния обеспечивает безопасное прохождение через сосудистую систему.", color: "cyan" },
+              { num: "02", title: "Навигация", body: "Позиционирование контролируется внешним магнитным полем и биохимическими маркерами. Точность достижения цели — 99.3%.", color: "blue" },
+              { num: "03", title: "Диагностика", body: "Сенсоры считывают биомаркеры воспаления и онкомаркеры, передают данные в Google Sheets через ИИ-агент.", color: "green" },
+            ].map((s, i) => (
+              <article key={s.num} className="neon-card p-7 space-y-4 animate-slide-up" style={{ animationDelay: `${i * 0.15}s` }}>
                 <div className="flex items-center justify-between">
-                  <span className={`${card.accent} px-3 py-1 font-display text-sm ${card.bg === "bg-bio-black" ? "text-bio-black" : "text-bio-black"}`}>
-                    {card.step}
+                  <span className={`nano-chip ${s.color === "green" ? "nano-chip-green" : s.color === "blue" ? "" : ""}`}>
+                    Шаг {s.num}
                   </span>
+                  <span className="font-display font-bold text-3xl text-nano-cyan/30">{s.num}</span>
                 </div>
-                <h3 className={`font-display text-4xl tracking-wider ${card.bg === "bg-bio-black" ? "text-bio-white" : "text-bio-black"}`}>
-                  {card.title}
-                </h3>
-                <p className={`text-sm leading-relaxed italic ${card.bg === "bg-bio-black" ? "text-bio-gray" : "text-bio-gray"}`}>
-                  {card.body}
-                </p>
-              </div>
+                <h3 className="font-display text-2xl text-nano-white tracking-wide">{s.title}</h3>
+                <p className="text-sm text-nano-white/60 leading-relaxed">{s.body}</p>
+                <div className="h-px bg-gradient-to-r from-nano-cyan via-nano-cyan/30 to-transparent" />
+                <p className="font-mono text-[10px] text-nano-cyan/70 tracking-widest">→ протокол активен</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
-
     </div>
   );
 }

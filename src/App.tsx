@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import MusicPlayer from "@/components/MusicPlayer";
 import Home from "@/pages/Home";
 import Catalog from "@/pages/Catalog";
 import Gallery from "@/pages/Gallery";
@@ -26,6 +27,7 @@ export default function App() {
         </main>
 
         <Footer />
+        <MusicPlayer />
       </div>
     </BrowserRouter>
   );

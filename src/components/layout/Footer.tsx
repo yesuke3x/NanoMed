@@ -1,66 +1,83 @@
 export default function Footer() {
   return (
-    <footer className="w-full border-t-2 border-bio-black bg-bio-black">
+    <footer className="w-full border-t border-nano-cyan/30 bg-nano-bgAlt/70 backdrop-blur-md mt-12">
 
       {/* Ticker */}
       <div className="ticker-wrap">
         <div className="ticker-inner">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="flex items-center">
-              <span className="ticker-item">БИОМЕД 2026</span>
-              <span className="ticker-dot">✦</span>
-              <span className="ticker-item">НАНОРОБОТЫ</span>
-              <span className="ticker-dot">✦</span>
-              <span className="ticker-item">ИКТ · НАРХОЗ</span>
-              <span className="ticker-dot">✦</span>
+              <span className="ticker-item">NANO MED · 2077 PROTOCOL</span>
+              <span className="ticker-dot">◇</span>
+              <span className="ticker-item">МИКРОРОБОТЫ-ДИАГНОСТЫ</span>
+              <span className="ticker-dot">◇</span>
+              <span className="ticker-item">ИКТ · НАРХОЗ · ВАРИАНТ 8</span>
+              <span className="ticker-dot">◇</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* Main footer */}
-      <div className="max-w-screen-xl mx-auto px-6 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="max-w-screen-xl mx-auto px-6 py-10 grid md:grid-cols-[1fr_2fr] gap-8">
 
-        {/* Logo block */}
-        <div className="flex items-center gap-3">
-          <span className="w-8 h-8 flex items-center justify-center bg-bio-lime text-bio-black font-display text-sm border-2 border-bio-lime">
-            BB
-          </span>
-          <div>
-            <p className="font-display text-xl text-bio-white tracking-widest">BioBot.</p>
-            <p className="font-mono text-[10px] text-bio-gray tracking-widest">НАНОТЕХНОЛОГИИ В МЕДИЦИНЕ</p>
+        {/* Brand block */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <span className="w-10 h-10 grid place-items-center border border-nano-cyan/60 rounded-md bg-nano-card font-display font-bold text-nano-cyan text-sm shadow-glow-cyan">
+              NM
+            </span>
+            <div>
+              <p className="font-display font-bold text-nano-white text-lg tracking-[0.3em]">
+                NANO<span className="text-nano-cyan"> MED</span>
+              </p>
+              <p className="font-mono text-[10px] text-nano-white/50 tracking-widest uppercase">
+                Медицина будущего · 2077
+              </p>
+            </div>
           </div>
+          <p className="text-sm text-nano-white/55 leading-relaxed max-w-sm">
+            Микророботы-диагносты размером 100 нм — революция в ранней диагностике
+            и таргетной доставке препаратов на клеточном уровне.
+          </p>
+          <p className="font-mono text-xs text-nano-cyan/80 tracking-wider">
+            ☎ +7 747 621 21 76
+          </p>
         </div>
 
-        {/* Info center */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-bio-gray font-mono text-xs tracking-widest">
+        {/* Info grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 font-mono text-xs">
           <div>
-            <span className="text-bio-lime block mb-1">СТУДЕНТ</span>
-            <span className="text-bio-white">Ким В.В.</span>
+            <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">СТУДЕНТ</p>
+            {/* TODO: ФИО — заполните */}
+            <p className="text-nano-white/85">Ким В. В.</p>
           </div>
           <div>
-            <span className="text-bio-lime block mb-1">ДИСЦИПЛИНА</span>
-            <span className="text-bio-white">ИКТ</span>
+            <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">ПРЕПОДАВАТЕЛЬ</p>
+            <p className="text-nano-white/85">Неверова Е. Г.</p>
+            <p className="text-nano-white/45 text-[10px] mt-0.5">ст. преп.</p>
           </div>
           <div>
-            <span className="text-bio-lime block mb-1">УНИВЕРСИТЕТ</span>
-            <span className="text-bio-white">Нархоз, 2026</span>
+            <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">ДИСЦИПЛИНА</p>
+            <p className="text-nano-white/85">ИКТ · 2026</p>
           </div>
           <div>
-            <span className="text-bio-lime block mb-1">ПРЕПОДАВАТЕЛЬ</span>
-            <span className="text-bio-white">Неверова Е.Г.</span>
+            <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">ВАРИАНТ</p>
+            <p className="text-nano-white/85">№ 8 — Нанотех</p>
           </div>
         </div>
       </div>
 
-      {/* Bottom line */}
-      <div className="border-t border-[rgba(255,255,255,0.08)] px-6 py-3 max-w-screen-xl mx-auto flex items-center justify-between">
-        <p className="font-mono text-[10px] text-bio-gray tracking-widest">
-          © 2026 · Проект по ИКТ
-        </p>
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse" />
-          <span className="font-mono text-[10px] text-bio-gray tracking-widest">СИСТЕМА АКТИВНА</span>
+      {/* Bottom bar */}
+      <div className="border-t border-nano-cyan/15">
+        <div className="max-w-screen-xl mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="font-mono text-[10px] text-nano-white/45 tracking-widest">
+            © 2026 NANO MED · ИКТ Нархоз · Вариант 8
+          </p>
+          <div className="flex items-center gap-2">
+            <span className="online-dot" />
+            <span className="font-mono text-[10px] text-nano-green tracking-widest uppercase">Системы активны · 24/7</span>
+          </div>
         </div>
       </div>
     </footer>

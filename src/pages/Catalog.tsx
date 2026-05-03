@@ -1,121 +1,112 @@
-/* ─────────────────────────────────────────────────────────────
-   СТРАНИЦА 02 — КАТАЛОГ СИСТЕМ (Лаба 5)
-   CSS Grid, 4 карточки — Neo-Brutalist
-   TODO: добавьте реальные изображения и расширенные описания
-   ───────────────────────────────────────────────────────────── */
-
-interface Product {
+interface Service {
   id: string;
+  icon: string;
   name: string;
-  price: string;
   category: string;
-  accentBg: string;
-  accentText: string;
-  badge?: string;
-  shortDesc: string;
-  specs: { label: string; value: string }[];
+  desc: string;
+  price: string;
+  duration: string;
+  accent: "cyan" | "green" | "purple";
 }
 
-const PRODUCTS: Product[] = [
+const SERVICES: Service[] = [
   {
-    id: "nano-scan-alpha",
-    name: "Nano-Scan Alpha",
-    price: "450 000 ₸",
+    id: "nano-onco",
+    icon: "❤️",
+    name: "Нано-диагностика онкологии",
+    category: "Онкология",
+    desc: "Раннее обнаружение опухолевых маркеров с помощью наноботов размером 50–70 нм. Сканирование в реальном времени.",
+    price: "150 000 KZT",
+    duration: "45 мин",
+    accent: "cyan",
+  },
+  {
+    id: "mri-nav",
+    icon: "🔬",
+    name: "МРТ-навигация наноботов",
     category: "Диагностика",
-    accentBg: "bg-bio-lime",
-    accentText: "text-bio-black",
-    shortDesc:
-      "Базовая система неинвазивной диагностики. Определяет концентрацию биомаркеров воспаления, мониторинг в реальном времени.",
-    specs: [
-      { label: "Размер",        value: "40–60 нм"    },
-      { label: "Автономность",  value: "72 часа"     },
-      { label: "Точность",      value: "96.5%"       },
-      { label: "Протокол",      value: "BioLink v2"  },
-    ],
+    desc: "Магнитно-резонансная навигация роя микророботов. Точность позиционирования до 99.3%.",
+    price: "200 000 KZT",
+    duration: "90 мин",
+    accent: "cyan",
   },
   {
-    id: "neuro-link-m1",
-    name: "Neuro-Link M1",
-    price: "890 000 ₸",
-    category: "Нейродиагностика",
-    accentBg: "bg-bio-black",
-    accentText: "text-bio-white",
-    badge: "Хит",
-    shortDesc:
-      "Специализирован для нейровизуализации. Проникает через гематоэнцефалический барьер, картирует нейронные связи.",
-    specs: [
-      { label: "Размер",     value: "20–30 нм"       },
-      { label: "Барьер",     value: "ГЭБ-проницаем"  },
-      { label: "Точность",   value: "98.1%"          },
-      { label: "Протокол",   value: "NeuroSync 3.0"  },
-    ],
+    id: "blood-ai",
+    icon: "💉",
+    name: "Анализ крови AI-мониторинг",
+    category: "Лаборатория",
+    desc: "Развёрнутый анализ крови с расшифровкой ИИ-агентом. Результаты приходят в Google Sheets онлайн.",
+    price: "35 000 KZT",
+    duration: "15 мин",
+    accent: "green",
   },
   {
-    id: "cell-repair-pro",
-    name: "Cell-Repair Pro",
-    price: "1 200 000 ₸",
+    id: "drug-delivery",
+    icon: "🧬",
+    name: "Таргетная доставка препаратов",
     category: "Терапия",
-    accentBg: "bg-bio-red",
-    accentText: "text-bio-white",
-    badge: "Флагман",
-    shortDesc:
-      "Комплексная система диагностики и локальной терапии. Доставляет лекарственные вещества напрямую к поражённым клеткам.",
-    specs: [
-      { label: "Размер",          value: "80–100 нм"      },
-      { label: "Нагрузка",        value: "до 200 молекул" },
-      { label: "Точность",        value: "99.3%"          },
-      { label: "Протокол",        value: "TheraBio v4"    },
-    ],
+    desc: "Доставка лекарственных молекул точно к поражённой клетке через нано-капсулы. До 200 молекул на робота.",
+    price: "280 000 KZT",
+    duration: "120 мин",
+    accent: "purple",
   },
   {
-    id: "onco-hunter",
-    name: "Onco-Hunter",
-    price: "950 000 ₸",
-    category: "Онкодиагностика",
-    accentBg: "bg-bio-lime",
-    accentText: "text-bio-black",
-    shortDesc:
-      "Специализирован для раннего выявления онкологических маркеров. Распознаёт атипичные клетки на стадии мутации.",
-    specs: [
-      { label: "Размер",    value: "50–70 нм"   },
-      { label: "Маркеры",   value: "47 типов"   },
-      { label: "Точность",  value: "97.8%"      },
-      { label: "Протокол",  value: "OncoBio v2" },
-    ],
+    id: "neuro-map",
+    icon: "🧠",
+    name: "Нейрологическое картирование",
+    category: "Нейродиагностика",
+    desc: "Картирование нейронных связей наноботами Neuro-Link M1, проникающими через гематоэнцефалический барьер.",
+    price: "180 000 KZT",
+    duration: "60 мин",
+    accent: "purple",
+  },
+  {
+    id: "regen",
+    icon: "⚡",
+    name: "Регенерация тканей",
+    category: "Регенеративная медицина",
+    desc: "Восстановление повреждённых тканей через стимуляцию роста клеток нано-сигналами. Курс из 3 процедур.",
+    price: "320 000 KZT",
+    duration: "180 мин",
+    accent: "green",
   },
 ];
 
+const CATS = ["Все", "Онкология", "Диагностика", "Лаборатория", "Терапия", "Нейродиагностика", "Регенеративная медицина"];
+
 export default function Catalog() {
   return (
-    <div className="min-h-screen bg-bio-white pt-14">
+    <div className="min-h-screen bg-nano-bg text-nano-white pt-24 pb-16">
 
-      {/* ── Page Header ── */}
-      <div className="border-b-2 border-bio-black bg-bio-black">
+      {/* Header */}
+      <div className="border-b border-nano-cyan/20 bg-gradient-to-r from-nano-bg via-nano-bgAlt to-nano-bg">
         <div className="max-w-screen-xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="sec-label" style={{ color: "#B8FF00" }}>
-              <span style={{ background: "#B8FF00" }} className="inline-block w-6 h-0.5" />
-              Лаба 05 · CSS Grid
-            </span>
-            <h1 className="font-display text-[clamp(3rem,8vw,7rem)] text-bio-white leading-none mt-2">
-              Каталог<br />
-              <span className="text-bio-lime">Систем</span>
+            <span className="nano-label">Услуги · Каталог · Прайс</span>
+            <h1 className="display-xl mt-3">
+              Наши <span className="text-glow-cyan">услуги</span>
             </h1>
+            <p className="text-nano-white/60 text-base mt-3 max-w-xl">
+              Современная диагностика на наноуровне. Шесть ключевых процедур,
+              доступных в клинике NANO MED.
+            </p>
           </div>
-          <p className="text-bio-gray text-sm max-w-xs leading-relaxed">
-            Линейка микророботизированных диагностических платформ 2026 года.
-          </p>
+          <div className="glass-card px-5 py-4 min-w-[220px]">
+            <p className="font-mono text-[10px] text-nano-white/55 tracking-widest mb-1">ЗАПИСЬ</p>
+            <p className="font-mono text-nano-cyan text-sm">+7 747 621 21 76</p>
+            <p className="font-mono text-[10px] text-nano-green mt-1">7/7 · 09:00 — 20:00</p>
+          </div>
         </div>
 
         {/* Filter strip */}
-        <div className="border-t border-[rgba(255,255,255,0.1)] px-6 py-3 flex flex-wrap gap-2 max-w-screen-xl mx-auto">
-          {["Все", "Диагностика", "Нейродиагностика", "Терапия", "Онкодиагностика"].map((cat, i) => (
+        <div className="border-t border-nano-cyan/15 px-6 py-3 flex flex-wrap gap-2 max-w-screen-xl mx-auto">
+          {CATS.map((cat, i) => (
             <button
               key={cat}
-              className={`px-4 py-1.5 font-mono text-[10px] tracking-widest uppercase border transition-all
+              className={`px-4 py-1.5 font-mono text-[10px] tracking-widest uppercase border rounded-full transition-all
                 ${i === 0
-                  ? "bg-bio-lime border-bio-lime text-bio-black"
-                  : "bg-transparent border-[rgba(255,255,255,0.2)] text-bio-gray hover:border-bio-lime hover:text-bio-lime"
+                  ? "bg-nano-cyan/15 border-nano-cyan text-nano-cyan shadow-glow-cyan"
+                  : "bg-transparent border-nano-cyan/25 text-nano-white/55 hover:border-nano-cyan hover:text-nano-cyan"
                 }`}
             >
               {cat}
@@ -124,72 +115,58 @@ export default function Catalog() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════
-          CSS GRID — 4 Cards
-      ══════════════════════════════════ */}
-      <div className="max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 border-l-2 border-bio-black">
-          {PRODUCTS.map((product) => (
-            <article
-              key={product.id}
-              className="border-r-2 border-b-2 border-bio-black group cursor-pointer transition-all hover:-translate-y-1 hover:shadow-[0_4px_0_0_#0C0C0C]"
-            >
-              {/* Image area */}
-              <div className="relative h-44 overflow-hidden bg-bio-light border-b-2 border-bio-black">
-                {/* TODO: <img src={`/images/${product.id}.jpg`} className="w-full h-full object-cover" /> */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-16 h-16 flex items-center justify-center text-3xl border-2 border-bio-black ${product.accentBg}`}>
-                    🤖
-                  </div>
-                </div>
-
-                {/* Category */}
-                <span className="absolute top-3 left-3 chip">{product.category}</span>
-
-                {/* Badge */}
-                {product.badge && (
-                  <span className="absolute top-3 right-3 chip chip-red">{product.badge}</span>
-                )}
+      {/* Cards grid */}
+      <div className="max-w-screen-xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {SERVICES.map((s, i) => (
+          <article
+            key={s.id}
+            className="neon-card p-6 flex flex-col gap-4 animate-slide-up"
+            style={{ animationDelay: `${i * 0.08}s` }}
+          >
+            <div className="flex items-start justify-between">
+              <div className="w-14 h-14 grid place-items-center rounded-xl bg-nano-bgAlt border border-nano-cyan/30 text-2xl shadow-glow-cyan">
+                {s.icon}
               </div>
+              <span className={`nano-chip ${s.accent === "green" ? "nano-chip-green" : s.accent === "purple" ? "nano-chip-purple" : ""}`}>
+                {s.category}
+              </span>
+            </div>
 
-              {/* Body */}
-              <div className="p-5 space-y-4 bg-bio-white">
-                <h2 className="font-display text-2xl tracking-wide text-bio-black group-hover:text-bio-red transition-colors">
-                  {product.name}
-                </h2>
+            <h2 className="font-display text-xl text-nano-white tracking-wide leading-snug">
+              {s.name}
+            </h2>
 
-                <p className="text-xs text-bio-gray leading-relaxed">
-                  {product.shortDesc}
-                </p>
+            <p className="text-sm text-nano-white/60 leading-relaxed flex-1">
+              {s.desc}
+            </p>
 
-                {/* Specs */}
-                <div className="grid grid-cols-2 gap-2">
-                  {product.specs.map((spec) => (
-                    <div key={spec.label} className="border border-bio-mid p-2">
-                      <p className="font-mono text-[9px] text-bio-gray uppercase tracking-widest">{spec.label}</p>
-                      <p className="font-mono text-xs font-medium text-bio-black mt-0.5">{spec.value}</p>
-                    </div>
-                  ))}
-                </div>
+            <div className="h-px bg-gradient-to-r from-nano-cyan/60 via-nano-cyan/15 to-transparent" />
 
-                {/* Price + CTA */}
-                <div className="flex items-center justify-between pt-3 border-t-2 border-bio-black">
-                  <p className="font-display text-2xl text-bio-black">{product.price}</p>
-                  {/* TODO: добавьте обработчик → открытие модального окна */}
-                  <button className={`btn-brut py-2 px-4 text-sm ${product.accentBg} ${product.accentText}`}>
-                    Детали
-                  </button>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+            <div className="flex items-center justify-between">
+              <p className="font-mono font-semibold text-lg text-nano-cyan tracking-wide">{s.price}</p>
+              <span className="nano-chip">{s.duration}</span>
+            </div>
 
-        {/* TODO: таблица сравнения */}
-        <div className="border-x-2 border-b-2 border-bio-black p-8 text-center bg-bio-light">
-          <p className="font-mono text-xs text-bio-gray tracking-widest">
-            [ Блок сравнения характеристик — доработайте ]
-          </p>
+            <button className="btn-neon btn-neon-outline w-full text-xs mt-1">
+              Записаться →
+            </button>
+          </article>
+        ))}
+      </div>
+
+      {/* Compare CTA */}
+      <div className="max-w-screen-xl mx-auto px-6">
+        <div className="glass-card p-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <div>
+            <p className="nano-label">Не нашли нужную услугу?</p>
+            <h3 className="font-display text-2xl text-nano-white mt-2">Свяжитесь с консультантом</h3>
+            <p className="text-sm text-nano-white/55 mt-1">
+              Подберём индивидуальный протокол диагностики.
+            </p>
+          </div>
+          <a href="tel:+77476212176" className="btn-neon btn-neon-primary">
+            ☎ Позвонить
+          </a>
         </div>
       </div>
     </div>

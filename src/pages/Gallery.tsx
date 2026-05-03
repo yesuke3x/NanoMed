@@ -1,149 +1,145 @@
 /* ─────────────────────────────────────────────────────────────
-   СТРАНИЦА 03 — МЕДИА-ГАЛЕРЕЯ (Лаба 6)
-   Neo-Brutalist — 3 медиа-блока
-   TODO: замените src-заглушки на реальные файлы
+   СТРАНИЦА — МУЛЬТИМЕДИА И ВИЗУАЛИЗАЦИЯ
+   Замените [USERNAME] на свой GitHub username и теги релизов
    ───────────────────────────────────────────────────────────── */
+
+// TODO: после загрузки файлов в GitHub Releases (тег v1.0) обновите URL.
+const GH_USER = "USERNAME"; // ← замените
+const GH_REPO = "NanoMed";
+const REL = (file: string) =>
+  `https://github.com/${GH_USER}/${GH_REPO}/releases/download/v1.0/${file}`;
 
 export default function Gallery() {
   return (
-    <div className="min-h-screen bg-bio-white pt-14">
+    <div className="min-h-screen bg-nano-bg text-nano-white pt-24 pb-16">
 
-      {/* ── Page Header ── */}
-      <div className="border-b-2 border-bio-black bg-bio-light">
-        <div className="max-w-screen-xl mx-auto px-6 py-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      {/* Header */}
+      <div className="border-b border-nano-cyan/20">
+        <div className="max-w-screen-xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="sec-label">Лаба 06 · Мультимедиа</span>
-            <h1 className="font-display text-[clamp(2.5rem,7vw,6rem)] text-bio-black leading-none mt-2">
-              Медиа<br /><span className="bg-bio-lime px-2">Галерея</span>
+            <span className="nano-label">Мультимедиа · Визуализация</span>
+            <h1 className="display-xl mt-3">
+              Медиа<span className="text-glow-cyan">галерея</span>
             </h1>
+            <p className="text-nano-white/60 text-base mt-3 max-w-xl">
+              AI-визуализация микроскопических процессов: от концепт-арта
+              до кинематографического трейлера.
+            </p>
           </div>
-          <p className="text-bio-gray text-sm max-w-xs leading-relaxed">
-            Визуализация микроскопических процессов — от концептуального арта до трейлеров.
-          </p>
+          <span className="nano-chip nano-chip-green"><span className="online-dot" /> 3 / 3 слот активны</span>
         </div>
       </div>
 
-      {/* ══════════════════════════════════
-          3 MEDIA BLOCKS
-      ══════════════════════════════════ */}
-      <div className="max-w-screen-xl mx-auto border-b-2 border-bio-black">
-        <div className="grid grid-cols-1 md:grid-cols-3 border-l-2 border-t-2 border-bio-black">
+      {/* Three media blocks */}
+      <div className="max-w-screen-xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-          {/* ── БЛОК 1 — Фото ── */}
-          <div className="border-r-2 border-b-2 md:border-b-0 border-bio-black group overflow-hidden">
-
-            {/* Image */}
-            <div className="relative overflow-hidden border-b-2 border-bio-black">
-              {/* TODO: concept.jpg — замените на AI-рендер из Nano Banana 2 */}
-              <img
-                src="/concept.jpg"
-                alt="Концепт-арт — ДНК и нанороботы"
-                className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=600&h=600&fit=crop";
-                }}
-              />
-              {/* Label overlay */}
-              <div className="absolute top-0 left-0 bg-bio-lime px-3 py-1.5 border-b-2 border-r-2 border-bio-black">
-                <span className="font-mono text-[9px] tracking-widest uppercase text-bio-black">ФОТО</span>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="p-5 space-y-3 bg-bio-white">
-              <h3 className="font-display text-2xl tracking-wide text-bio-black">DNA & Nanobots</h3>
-              {/* TODO: добавьте описание */}
-              <p className="text-xs text-bio-gray italic">[ Опишите что изображено на концепт-арте ]</p>
-              <div className="ai-tag">
-                Model: Nano Banana 2 | Prompt: Abstract medical background, blurred DNA helix strands
-                and nanobots in teal and purple hues, microscopic science art, dark atmospheric
-                background, ultra high resolution, 4:3 composition
-              </div>
-            </div>
+        {/* === A) Static AI image === */}
+        <article className="neon-card overflow-hidden flex flex-col">
+          <div className="relative aspect-square overflow-hidden border-b border-nano-cyan/30">
+            {/* TODO: замените src на ваш AI-рендер из Kandinsky 3.1 */}
+            <img
+              src="/concept.jpg"
+              alt="Нанобот в кровотоке — концепт-арт"
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src =
+                  "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=700&h=700&fit=crop";
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-nano-bg/80 via-transparent to-transparent" />
+            <span className="absolute top-3 left-3 nano-chip">🖼 ФОТО</span>
           </div>
 
-          {/* ── БЛОК 2 — Loop Animation ── */}
-          <div className="border-r-2 border-b-2 md:border-b-0 border-bio-black group overflow-hidden">
-
-            {/* Video */}
-            <div className="relative overflow-hidden border-b-2 border-bio-black">
-              {/* TODO: добавьте /videos/nanobots-loop.mp4 из PixVerse */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full aspect-square object-cover"
-                poster="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&h=600&fit=crop"
-              >
-                <source src="/videos/nanobots-loop.mp4"  type="video/mp4"  />
-                <source src="/videos/nanobots-loop.webm" type="video/webm" />
-              </video>
-
-              {/* Label overlay */}
-              <div className="absolute top-0 left-0 bg-bio-black px-3 py-1.5 border-b-2 border-r-2 border-bio-black flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-bio-lime animate-pulse" />
-                <span className="font-mono text-[9px] tracking-widest uppercase text-bio-lime">LOOP</span>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="p-5 space-y-3 bg-bio-light">
-              <h3 className="font-display text-2xl tracking-wide text-bio-black">Nanobots in Plasma</h3>
-              {/* TODO: добавьте описание */}
-              <p className="text-xs text-bio-gray italic">[ Опишите анимацию и технологию генерации ]</p>
-              <div className="ai-tag">
-                Model: PixVerse | Prompt: Microscopic loop of glowing nanobots moving through plasma,
-                bioluminescent teal particles, seamless loop, dark background,
-                cinematic macro photography style
-              </div>
+          <div className="p-5 space-y-3 flex-1">
+            <h3 className="font-display text-xl text-nano-white tracking-wide">DNA &amp; Nanobots</h3>
+            <p className="text-sm text-nano-white/60 leading-relaxed">
+              Концептуальный рендер взаимодействия микроробота с двойной спиралью ДНК.
+              Используется на главной как визуальный якорь.
+            </p>
+            <div className="ai-tag">
+              🖼 Kandinsky 3.1 · Промпт: <em>microscopic 3D render, glowing nanobot near DNA helix,
+              bioluminescent teal particles, dark medical atmosphere, ultra-realistic</em>
             </div>
           </div>
+        </article>
 
-          {/* ── БЛОК 3 — Трейлер ── */}
-          <div className="border-b-2 md:border-b-0 border-bio-black group overflow-hidden">
+        {/* === B) Animated hero ("revived photo") === */}
+        <article className="neon-card overflow-hidden flex flex-col">
+          <div className="relative aspect-square overflow-hidden border-b border-nano-cyan/30 scan-overlay">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              poster="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=700&h=700&fit=crop"
+            >
+              {/* TODO: загрузите animation.mp4 в GitHub Releases v1.0 */}
+              <source src={REL("animation.mp4")} type="video/mp4" />
+              <source src="/videos/nanobots-loop.mp4" type="video/mp4" />
+            </video>
+            <span className="absolute top-3 left-3 nano-chip nano-chip-green">
+              <span className="online-dot" /> LOOP
+            </span>
+          </div>
 
-            {/* Video */}
-            <div className="relative overflow-hidden border-b-2 border-bio-black">
-              {/* TODO: добавьте /videos/trailer.mp4 из Higgsfield AI */}
-              <video
-                controls
-                className="w-full aspect-square object-cover"
-                poster="https://images.unsplash.com/photo-1576671081837-49000212a370?w=600&h=600&fit=crop"
-              >
-                <source src="/videos/trailer.mp4"  type="video/mp4"  />
-                <source src="/videos/trailer.webm" type="video/webm" />
-              </video>
-
-              {/* Label overlay */}
-              <div className="absolute top-0 left-0 bg-bio-red px-3 py-1.5 border-b-2 border-r-2 border-bio-black">
-                <span className="font-mono text-[9px] tracking-widest uppercase text-bio-white">ТРЕЙЛЕР</span>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="p-5 space-y-3 bg-bio-white">
-              <h3 className="font-display text-2xl tracking-wide text-bio-black">Mission: Diagnostics</h3>
-              {/* TODO: добавьте описание трейлера */}
-              <p className="text-xs text-bio-gray italic">[ Опишите трейлер и нарративную структуру ]</p>
-              <div className="ai-tag">
-                Model: Higgsfield AI | Prompt: Multi-shot cinematic — nanobots traveling through artery,
-                close-up of robot detecting cancer cell, data transmission visualization,
-                dramatic lighting, medical documentary style, 4K
-              </div>
+          <div className="p-5 space-y-3 flex-1">
+            <h3 className="font-display text-xl text-nano-white tracking-wide">Nanobots in Plasma</h3>
+            <p className="text-sm text-nano-white/60 leading-relaxed">
+              «Ожившее фото» — петлевая анимация роя наноботов в плазме крови.
+              Бесшовный loop без стыков для фоновой визуализации.
+            </p>
+            <div className="ai-tag">
+              🎬 D-ID / Runway · Промпт: <em>microscopic loop of glowing nanobots moving through
+              plasma, bioluminescent teal particles, seamless loop, cinematic macro photography</em>
             </div>
           </div>
+        </article>
+
+        {/* === C) GitHub Releases video (Lumen5) === */}
+        <article className="neon-card overflow-hidden flex flex-col">
+          <div className="relative aspect-square overflow-hidden border-b border-nano-cyan/30 bg-nano-card">
+            <video
+              controls
+              preload="metadata"
+              className="w-full h-full object-cover"
+              poster="https://images.unsplash.com/photo-1576671081837-49000212a370?w=700&h=700&fit=crop"
+            >
+              {/* TODO: загрузите promo-video.mp4 в GitHub Releases v1.0 и замените USERNAME выше */}
+              <source src={REL("promo-video.mp4")} type="video/mp4" />
+              <source src="/videos/trailer.mp4" type="video/mp4" />
+              Видео не поддерживается вашим браузером.
+            </video>
+            <span className="absolute top-3 left-3 nano-chip nano-chip-purple">🎥 ВИДЕО</span>
+          </div>
+
+          <div className="p-5 space-y-3 flex-1">
+            <h3 className="font-display text-xl text-nano-white tracking-wide">Mission: Diagnostics</h3>
+            <p className="text-sm text-nano-white/60 leading-relaxed">
+              Тематический трейлер о работе клиники NANO MED. Видео загружено
+              в GitHub Releases (v1.0) для прямого стрима без CDN-зависимостей.
+            </p>
+            <div className="ai-tag">
+              🎥 Lumen5 · Сценарий: <em>multi-shot trailer — nanobot through artery,
+              cancer cell detection, data transmission visualisation, medical documentary, 4K</em>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      {/* GH Releases instructions */}
+      <div className="max-w-screen-xl mx-auto px-6">
+        <div className="glass-card p-6 border-l-2 border-l-nano-green">
+          <p className="nano-label">📦 Инструкция · GitHub Releases</p>
+          <pre className="font-mono text-[11px] text-nano-white/65 mt-3 whitespace-pre-wrap leading-relaxed">
+{`1. Откройте https://github.com/USERNAME/NanoMed/releases/new
+2. Tag: v1.0  · Title: NanoMed Media v1.0
+3. Прикрепите файлы: promo-video.mp4, animation.mp4, avatar-heygen.mp4, background-music.mp3
+4. В src/pages/Gallery.tsx и MusicPlayer.tsx замените const GH_USER = "USERNAME" на ваш ник
+5. Готово — видео стримится напрямую с GitHub`}
+          </pre>
         </div>
       </div>
-
-      {/* TODO: расширьте галерею */}
-      <div className="max-w-screen-xl mx-auto border-x-2 border-b-2 border-bio-black p-8 text-center bg-bio-light">
-        <p className="font-mono text-xs text-bio-gray tracking-widest">
-          [ Дополнительные медиа-блоки — доработайте галерею ]
-        </p>
-      </div>
-
     </div>
   );
 }

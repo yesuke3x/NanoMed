@@ -1,224 +1,186 @@
-/* ─────────────────────────────────────────────────────────────
-   СТРАНИЦА 05 — ВЫВОДЫ
-   Neo-Brutalist editorial
-   TODO: заполните реальным содержимым
-   ───────────────────────────────────────────────────────────── */
-
 interface AiTool {
-  num:          string;
-  name:         string;
-  role:         string;
-  accentBg:     string;
-  accentText:   string;
+  num: string;
+  name: string;
+  role: string;
   contribution: string;
+  accent: "cyan" | "green" | "purple";
 }
 
 const AI_TOOLS: AiTool[] = [
+  { num: "01", name: "Kandinsky 3.1",   role: "Генерация изображений",     accent: "cyan",   contribution: "Гипер-реалистичные 3D-рендеры наноботов в кровотоке для главной и галереи." },
+  { num: "02", name: "D-ID / Runway",    role: "Видео-анимация",           accent: "green",  contribution: "«Ожившие» концепт-арты — петлевые анимации движения роя в плазме." },
+  { num: "03", name: "Lumen5",           role: "Кинематографическое видео", accent: "purple", contribution: "Многоплановый трейлер клиники с озвучкой и субтитрами." },
+  { num: "04", name: "Suno AI",          role: "Музыка",                    accent: "cyan",   contribution: "Оригинальный ambient-саундтрек, без лицензионных треков." },
+  { num: "05", name: "HeyGen",           role: "Нейроаватар",               accent: "green",  contribution: "Виртуальный консультант BioBot для центра управления." },
+  { num: "06", name: "Zapier + Sheets",  role: "ИИ-агент",                  accent: "purple", contribution: "Автоматический мониторинг новостей нанотех с обновлением Google Sheets." },
+];
+
+const REFLECTION = [
   {
-    num: "01",
-    name: "Nano Banana 2",
-    role: "Генерация изображений",
-    accentBg: "bg-bio-lime",
-    accentText: "text-bio-black",
-    contribution:
-      "Создание гиперреалистичных 3D-рендеров наноботов в кровотоке для главной страницы и галереи. Позволил визуализировать субмикронные объекты, недоступные обычной фотосъёмке.",
+    title: "✓ Эффективные инструменты",
+    accent: "green" as const,
+    body: "Kandinsky показал лучший результат для научной визуализации — точные пропорции и медицинская стилистика. Suno AI с одного промпта дал готовый ambient-трек. HeyGen генерирует аватар за 3 минуты вместо часов на съёмку.",
   },
   {
-    num: "02",
-    name: "PixVerse",
-    role: "Видеоанимация (loop)",
-    accentBg: "bg-bio-black",
-    accentText: "text-bio-lime",
-    contribution:
-      "Генерация бесшовной петлевой анимации движения наноботов в плазме крови. Инструмент создаёт физически правдоподобное поведение частиц в биологической среде.",
+    title: "✕ Сложности и ограничения",
+    accent: "cyan" as const,
+    body: "Видео-генераторы (Runway, D-ID) часто искажают анатомию. Чат-боты на бесплатных тарифах ограничены 100 сообщениями. Zapier требует тщательной настройки фильтров — иначе таблица засоряется. Промпты приходилось переписывать 5–10 раз.",
   },
   {
-    num: "03",
-    name: "Higgsfield AI",
-    role: "Кинематографическое видео",
-    accentBg: "bg-bio-red",
-    accentText: "text-bio-white",
-    contribution:
-      "Создание многопланового видео-трейлера. Сцены путешествия нанобота по артерии и обнаружения клетки-мишени с кинематографической постановкой.",
-  },
-  {
-    num: "04",
-    name: "Suno AI",
-    role: "Генерация музыки",
-    accentBg: "bg-bio-lime",
-    accentText: "text-bio-black",
-    contribution:
-      "Создание оригинального ambient-саундтрека — атмосфера стерильной футуристической медицины без использования лицензионных треков.",
-  },
-  {
-    num: "05",
-    name: "HeyGen",
-    role: "AI-аватар",
-    accentBg: "bg-bio-black",
-    accentText: "text-bio-white",
-    contribution:
-      "Создание реалистичного видео-аватара ИИ-ассистента для Центра управления. Персонаж объясняет функции системы мониторинга.",
+    title: "◈ Личные выводы",
+    accent: "purple" as const,
+    body: "Главный навык проекта — промпт-инжиниринг. Освоил React + Tailwind на практике, понял как интегрировать iframe и работать с GitHub Releases как с CDN. Нейросети ускоряют, но не заменяют дизайнерское мышление.",
   },
 ];
 
 const SKILLS = [
-  { label: "HTML5 / CSS3 / Flexbox / Grid",                        icon: "🏗️" },
-  { label: "Мультимедиа-элементы (audio, video, iframe)",          icon: "🎬" },
-  { label: "Промпт-инжиниринг для ИИ-инструментов",               icon: "🤖" },
-  { label: "Брутализм / Editorial UI дизайн",                      icon: "🖤" },
-  { label: "[ Дополнительный навык — доработайте ]",               icon: "⚡" },
-  { label: "[ Дополнительный навык — доработайте ]",               icon: "📊" },
+  { i: "🏗", t: "React + Vite + Tailwind CSS" },
+  { i: "🎬", t: "Мультимедиа: <audio>, <video>, <iframe>" },
+  { i: "🤖", t: "Промпт-инжиниринг для AI-инструментов" },
+  { i: "⚡", t: "Zapier · Google Sheets · автоматизация" },
+  { i: "💬", t: "Интеграция чат-ботов через iframe" },
+  { i: "📦", t: "GitHub Releases как CDN для медиа" },
 ];
 
 export default function Conclusions() {
-  // TODO: замените # на реальные ссылки
-  const PRESENTATION_URL = "#"; // Google Slides / Canva
-  const SOURCES_URL      = "#"; // Google Drive
+  // TODO: вставьте ссылки
+  const PRESENTATION_URL = "#";
+  const SOURCES_URL      = "#";
 
   return (
-    <div className="min-h-screen bg-bio-white pt-14">
+    <div className="min-h-screen bg-nano-bg text-nano-white pt-24 pb-16">
 
-      {/* ── Page Header ── */}
-      <div className="border-b-2 border-bio-black bg-bio-lime">
+      {/* Header */}
+      <div className="border-b border-nano-cyan/20">
         <div className="max-w-screen-xl mx-auto px-6 py-12">
-          <span className="sec-label">05 · Заключение</span>
-          <h1 className="font-display text-[clamp(3rem,9vw,8rem)] text-bio-black leading-none mt-2">
-            Выводы<br />по проекту
+          <span className="nano-label">📊 Аналитика и выводы · Финальный блок</span>
+          <h1 className="display-xl mt-3">
+            Выводы по <span className="text-glow-cyan">проекту</span>
           </h1>
-          <p className="text-bio-black/60 text-sm max-w-md leading-relaxed mt-4">
-            Применение нейросетевых инструментов для научной визуализации
-            в рамках дисциплины ИКТ · Нархоз 2026
+          <p className="text-nano-white/60 max-w-2xl mt-3">
+            Применение нейросетевых инструментов для научной визуализации в рамках
+            дисциплины ИКТ · Нархоз 2026 · Вариант 8 — Нанотехнологии в медицине.
           </p>
         </div>
       </div>
 
-      <div className="max-w-screen-xl mx-auto">
+      {/* 3 reflection cards */}
+      <section className="max-w-screen-xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-6">
+        {REFLECTION.map((r, i) => (
+          <article
+            key={r.title}
+            className="glass-card p-6 space-y-4 animate-slide-up"
+            style={{ animationDelay: `${i * 0.12}s` }}
+          >
+            <span className={`nano-chip ${r.accent === "green" ? "nano-chip-green" : r.accent === "purple" ? "nano-chip-purple" : ""}`}>
+              {`блок 0${i + 1}`}
+            </span>
+            <h3 className={`font-display text-xl tracking-wide ${
+              r.accent === "green" ? "text-nano-green"
+              : r.accent === "purple" ? "text-[#C580FF]"
+              : "text-nano-cyan"
+            }`}>
+              {r.title}
+            </h3>
+            <p className="text-sm text-nano-white/65 leading-relaxed">
+              {r.body}
+            </p>
+          </article>
+        ))}
+      </section>
 
-        {/* ══════════════════════════════════
-            MAIN TEXT
-        ══════════════════════════════════ */}
-        <div className="border-b-2 border-bio-black grid md:grid-cols-[280px_1fr]">
-          {/* Side label */}
-          <div className="p-8 border-b-2 md:border-b-0 md:border-r-2 border-bio-black bg-bio-light flex flex-col justify-between gap-6">
-            <div>
-              <span className="sec-label">О проекте</span>
-              <p className="font-display text-4xl text-bio-black mt-3 leading-none">ИТОГИ<br />РАБОТЫ</p>
-            </div>
-            <p className="font-mono text-[10px] text-bio-gray tracking-widest leading-relaxed">
-              Ким В.В. · ИКТ<br />Нархоз 2026<br />Неверова Е.Г.
+      {/* Long-form text */}
+      <section className="max-w-screen-xl mx-auto px-6 py-8">
+        <div className="glass-card p-8 grid md:grid-cols-[240px_1fr] gap-8">
+          <div className="space-y-4">
+            <span className="nano-label">О проекте</span>
+            <p className="font-display text-3xl text-nano-cyan tracking-wide leading-none">
+              ИТОГИ<br/>РАБОТЫ
+            </p>
+            <p className="font-mono text-[10px] text-nano-white/55 tracking-widest leading-relaxed">
+              {/* TODO: ФИО */}
+              Ким В. В. · ИКТ<br/>
+              Нархоз 2026<br/>
+              ст. преп. Неверова Е. Г.
             </p>
           </div>
 
-          {/* Text */}
-          <div className="p-8 space-y-5 text-sm text-bio-gray leading-relaxed">
+          <div className="space-y-5 text-sm text-nano-white/65 leading-relaxed">
             <p>
-              В ходе выполнения экзаменационного проекта по дисциплине
-              <span className="text-bio-black font-semibold"> Информационно-коммуникационные технологии </span>
-              был разработан многостраничный веб-сайт, посвящённый теме
+              В ходе экзаменационного проекта по дисциплине
+              <span className="text-nano-cyan"> Информационно-коммуникационные технологии </span>
+              разработан многостраничный SPA-сайт «NANO MED», посвящённый теме
               «Нанотехнологии в медицине: микророботы-диагносты».
-              {/* TODO: продолжите абзац */}
             </p>
-
-            <p className="border-l-4 border-bio-lime pl-4 italic text-bio-mid">
-              {/* TODO: абзац о применении ИИ-инструментов в лабах 5, 6, 7 */}
-              [ Опишите как именно использовались нейросетевые инструменты
-              в каждой из лабораторных работ (Лаба 5, 6, 7) ]
+            <p className="border-l-2 border-nano-cyan pl-4 italic text-nano-white/55">
+              Использовано 6+ нейросетевых инструментов: Kandinsky для статичных
+              изображений, D-ID/Runway для видео-анимаций, Lumen5 для трейлера,
+              Suno AI для саундтрека, HeyGen для нейро-аватара и Zapier для агентского
+              мониторинга данных в Google Sheets.
             </p>
-
             <p>
-              {/* TODO: практическая значимость нанотехнологий */}
-              [ Раскройте практическую значимость микророботов-диагностов
-              для современной медицины и перспективы к 2030 году ]
+              К 2030 году микро-роботы-диагносты должны стать стандартом ранней
+              диагностики онкологии и неврологических заболеваний, заменив часть
+              инвазивных процедур.
             </p>
-
-            <p className="border-l-4 border-bio-red pl-4 italic text-bio-mid">
-              {/* TODO: личный вывод о полученных навыках */}
-              [ Личный вывод: какие навыки ИКТ освоены в ходе проекта ]
+            <p className="border-l-2 border-nano-green pl-4 italic text-nano-white/55">
+              Главный личный итог — переход от шаблонного использования AI к осознанному
+              промпт-инжинирингу с критической оценкой результатов.
             </p>
           </div>
         </div>
+      </section>
 
-        {/* ══════════════════════════════════
-            AI TOOLS TABLE
-        ══════════════════════════════════ */}
-        <div className="border-b-2 border-bio-black">
-          <div className="px-6 py-4 border-b-2 border-bio-black bg-bio-light flex items-center justify-between">
-            <span className="sec-label">Использованные ИИ-инструменты</span>
-          </div>
-
-          <div className="divide-y-2 divide-bio-black">
-            {AI_TOOLS.map((tool) => (
-              <div
-                key={tool.name}
-                className="grid grid-cols-1 sm:grid-cols-[72px_180px_1fr] items-start hover:bg-bio-light transition-colors"
-              >
-                {/* Number */}
-                <div className={`${tool.accentBg} ${tool.accentText} flex items-center justify-center font-display text-3xl p-5 h-full border-b-2 sm:border-b-0 sm:border-r-2 border-bio-black`}>
-                  {tool.num}
-                </div>
-
-                {/* Name + role */}
-                <div className="p-5 border-b-2 sm:border-b-0 sm:border-r-2 border-bio-black">
-                  <p className="font-display text-xl text-bio-black">{tool.name}</p>
-                  <span className="chip mt-2">{tool.role}</span>
-                </div>
-
-                {/* Description */}
-                <div className="p-5">
-                  <p className="text-sm text-bio-gray leading-relaxed">{tool.contribution}</p>
-                </div>
+      {/* AI tools table */}
+      <section className="max-w-screen-xl mx-auto px-6 py-8">
+        <span className="nano-label mb-4 inline-block">Использованные ИИ-инструменты</span>
+        <div className="neon-card overflow-hidden">
+          {AI_TOOLS.map((tool, i) => (
+            <div
+              key={tool.name}
+              className={`grid grid-cols-1 sm:grid-cols-[64px_200px_1fr] items-stretch hover:bg-nano-cyan/5 transition-colors ${
+                i > 0 ? "border-t border-nano-cyan/15" : ""
+              }`}
+            >
+              <div className={`grid place-items-center font-display font-bold text-2xl py-4 sm:py-0 border-b sm:border-b-0 sm:border-r border-nano-cyan/15 ${
+                tool.accent === "green" ? "text-nano-green" : tool.accent === "purple" ? "text-[#C580FF]" : "text-nano-cyan"
+              }`}>
+                {tool.num}
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ══════════════════════════════════
-            SKILLS GRID
-        ══════════════════════════════════ */}
-        <div className="border-b-2 border-bio-black">
-          <div className="px-6 py-4 border-b-2 border-bio-black bg-bio-light">
-            <span className="sec-label">Полученные навыки</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-l-2 border-bio-black">
-            {SKILLS.map((item, i) => (
-              <div
-                key={i}
-                className="border-r-2 border-b-2 border-bio-black p-6 flex items-center gap-4 hover:bg-bio-light transition-colors"
-              >
-                <span className="text-3xl">{item.icon}</span>
-                <p className="text-sm text-bio-black leading-snug">{item.label}</p>
+              <div className="p-4 border-b sm:border-b-0 sm:border-r border-nano-cyan/15">
+                <p className="font-display text-lg text-nano-white tracking-wide">{tool.name}</p>
+                <span className="nano-chip mt-2">{tool.role}</span>
               </div>
-            ))}
-          </div>
+              <div className="p-4">
+                <p className="text-sm text-nano-white/60 leading-relaxed">{tool.contribution}</p>
+              </div>
+            </div>
+          ))}
         </div>
+      </section>
 
-        {/* ══════════════════════════════════
-            CTA BUTTONS
-        ══════════════════════════════════ */}
-        <div className="flex flex-col sm:flex-row divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-bio-black border-b-2 border-bio-black">
-          {/* TODO: замените PRESENTATION_URL */}
-          <a
-            href={PRESENTATION_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-brut btn-lime flex-1 justify-center py-6 text-2xl rounded-none border-0 border-r-0"
-          >
-            <span>📊</span> Презентация
-          </a>
-
-          {/* TODO: замените SOURCES_URL */}
-          <a
-            href={SOURCES_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-brut btn-dark flex-1 justify-center py-6 text-2xl rounded-none border-0"
-          >
-            <span>📁</span> Исходники (Google Drive)
-          </a>
+      {/* Skills */}
+      <section className="max-w-screen-xl mx-auto px-6 py-8">
+        <span className="nano-label mb-4 inline-block">Полученные навыки</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {SKILLS.map((s) => (
+            <div key={s.t} className="neon-card p-5 flex items-center gap-4">
+              <span className="text-2xl">{s.i}</span>
+              <p className="text-sm text-nano-white/80 leading-snug">{s.t}</p>
+            </div>
+          ))}
         </div>
+      </section>
 
-      </div>
+      {/* CTA buttons */}
+      <section className="max-w-screen-xl mx-auto px-6 py-8 grid sm:grid-cols-2 gap-4">
+        <a href={PRESENTATION_URL} target="_blank" rel="noopener noreferrer" className="btn-neon btn-neon-primary py-5">
+          📊 Презентация (Google Slides)
+        </a>
+        <a href={SOURCES_URL} target="_blank" rel="noopener noreferrer" className="btn-neon btn-neon-outline py-5">
+          📁 Исходники (Google Drive)
+        </a>
+      </section>
     </div>
   );
 }
