@@ -45,7 +45,8 @@ export default function Catalog() {
           </div>
           <div className="glass-card px-5 py-4 min-w-[220px]">
             <p className="font-mono text-[10px] text-nano-white/55 tracking-widest mb-1">ЗАПИСЬ</p>
-            <p className="font-mono text-nano-cyan text-sm">+7 747 621 21 76</p>
+            <p className="font-mono text-nano-cyan text-sm">+7 (747) 422 04 46</p>
+            <p className="font-mono text-nano-cyan/80 text-[11px] mt-0.5">viktoriya.kim@narxoz.kz</p>
             <p className="font-mono text-[10px] text-nano-green mt-1">7/7 · 09:00 — 20:00</p>
           </div>
         </div>
@@ -127,7 +128,7 @@ export default function Catalog() {
                 <span className="nano-chip">{s.duration}</span>
               </div>
 
-              <a href="tel:+77476212176" className="btn-neon btn-neon-outline w-full text-xs mt-1">
+              <a href="tel:+77474220446" className="btn-neon btn-neon-outline w-full text-xs mt-1">
                 Записаться →
               </a>
             </article>
@@ -146,7 +147,7 @@ export default function Catalog() {
             </p>
           </div>
           <a
-            href="https://wa.me/77476212176"
+            href="https://wa.me/77474220446"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-neon btn-neon-primary"

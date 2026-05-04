@@ -108,7 +108,9 @@ export default function Home() {
               <div className="glass-card px-4 py-2.5">
                 <p className="font-mono text-[9px] text-nano-cyan tracking-widest uppercase mb-0.5">Студент</p>
                 {/* TODO: ФИО — заполните своими данными */}
-                <p className="font-mono text-sm text-nano-green">Ким В. В.</p>
+                <p className="font-mono text-sm text-nano-green">Ким Виктория Вячеславовна</p>
+                <p className="font-mono text-[10px] text-nano-green/70 mt-0.5">viktoriya.kim@narxoz.kz</p>
+                <p className="font-mono text-[10px] text-nano-green/70">+7 (747) 422 04 46</p>
               </div>
               <div className="glass-card px-4 py-2.5">
                 <p className="font-mono text-[9px] text-nano-cyan tracking-widest uppercase mb-0.5">Преподаватель</p>

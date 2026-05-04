@@ -156,7 +156,9 @@ export default function Conclusions() {
               ИТОГИ<br/>РАБОТЫ
             </p>
             <p className="font-mono text-[10px] text-nano-white/55 tracking-widest leading-relaxed">
-              Ким В. В. · ИКТ<br/>
+              Ким Виктория Вячеславовна · ИКТ<br/>
+              viktoriya.kim@narxoz.kz<br/>
+              +7 (747) 422 04 46<br/>
               Нархоз 2026<br/>
               ст. преп. Неверова Е. Г.
             </p>

@@ -41,7 +41,10 @@ export default function Footer() {
             и таргетной доставке препаратов на клеточном уровне.
           </p>
           <p className="font-mono text-xs text-nano-cyan/80 tracking-wider">
-            ☎ +7 747 621 21 76
+            ☎ +7 (747) 422 04 46
+          </p>
+          <p className="font-mono text-xs text-nano-cyan/80 tracking-wider">
+            ✉ <a href="mailto:viktoriya.kim@narxoz.kz" className="hover:text-nano-green underline-offset-2 hover:underline">viktoriya.kim@narxoz.kz</a>
           </p>
           <a
             href="https://drive.google.com/drive/u/0/folders/1j9GMKmWkecr0pyWsMW8_ahJlK4_p7xSj"
@@ -58,7 +61,7 @@ export default function Footer() {
           <div>
             <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">СТУДЕНТ</p>
             {/* TODO: ФИО — заполните */}
-            <p className="text-nano-white/85">Ким В. В.</p>
+            <p className="text-nano-white/85">Ким Виктория Вячеславовна</p>
           </div>
           <div>
             <p className="text-nano-cyan tracking-widest mb-2 text-[10px]">ПРЕПОДАВАТЕЛЬ</p>
