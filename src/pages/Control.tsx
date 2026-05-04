@@ -14,10 +14,10 @@ const DRIVE_URL =
   "https://drive.google.com/drive/u/0/folders/1j9GMKmWkecr0pyWsMW8_ahJlK4_p7xSj";
 
 /* iframe-эмбед Google Sheets (Zapier output).
-   Чтобы получить:  Файл → Поделиться → Опубликовать в интернете → Вставить.
-   Подставьте свой URL вместо плейсхолдера ниже. */
-const ZAPIER_IFRAME_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQjXgVyT_sm0XB5jLKp0R8gO1LpYpZ2xKwY_PASTE_YOUR_KEY/pubhtml?gid=0&single=true&widget=true&headers=false";
+   Чтобы включить:  File → Share → Publish to web → Embed,
+   скопируйте URL из <iframe src="..."> и вставьте сюда вместо "".
+   Пока строка пустая — рендерится статичный снапшот из NanoMed.xlsx. */
+const ZAPIER_IFRAME_URL = "";
 
 const SYSTEM_PROMPT = `Ты — медицинский ИИ-ассистент клиники NANO MED.
 Специализируешься на нанотехнологиях в медицине.
@@ -78,8 +78,8 @@ export default function Control() {
               className="w-full h-full object-cover"
               poster="/media/character.png"
             >
-              <source src={REL("avatar.mp4")} type="video/mp4" />
-              <source src="/media/avatar.mp4" type="video/mp4" />
+              <source src={REL("heygen-avatar.mp4")} type="video/mp4" />
+              <source src="/media/heygen-avatar.mp4" type="video/mp4" />
             </video>
             <div className="absolute top-3 right-3 w-10 h-10 rounded-full border border-nano-cyan/40 animate-spin-slow grid place-items-center">
               <span className="w-1.5 h-1.5 bg-nano-cyan rounded-full shadow-glow-cyan-strong" />
@@ -140,31 +140,27 @@ export default function Control() {
         </div>
 
         <div className="iframe-frame">
-          {/* Live Google Sheets iframe — Zapier output */}
+          {/* Browser-style chrome */}
           <div className="bg-nano-bgAlt border-b border-nano-cyan/40 px-4 py-2 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="online-dot" />
               <span className="font-mono text-[10px] text-nano-cyan tracking-widest uppercase">
-                docs.google.com/spreadsheets · live embed
+                docs.google.com/spreadsheets · NanoMed.xlsx
               </span>
             </div>
             <span className="font-mono text-[10px] text-nano-white/55">⊕ ⊖ ⊠</span>
           </div>
 
-          <iframe
-            title="Zapier · Google Sheets · NanoMed RSS feed"
-            src={ZAPIER_IFRAME_URL}
-            className="w-full bg-white"
-            style={{ height: "560px", border: "0" }}
-            loading="lazy"
-          />
-
-          {/* Локальный fallback-снапшот (рендерится из NanoMed.xlsx) */}
-          <details className="bg-nano-card border-t border-nano-cyan/30">
-            <summary className="px-4 py-3 cursor-pointer font-mono text-[11px] text-nano-cyan tracking-widest uppercase hover:bg-nano-cyan/5">
-              ▾ Снапшот данных (offline-fallback · {ZAPIER_ROWS.length} строк)
-            </summary>
-            <div className="relative overflow-hidden">
+          {ZAPIER_IFRAME_URL ? (
+            <iframe
+              title="Zapier · Google Sheets · NanoMed RSS feed"
+              src={ZAPIER_IFRAME_URL}
+              className="w-full bg-white"
+              style={{ height: "560px", border: "0" }}
+              loading="lazy"
+            />
+          ) : (
+            <div className="bg-nano-card relative overflow-hidden">
               <div className="absolute inset-0 nano-grid-bg opacity-20 pointer-events-none" />
               <div className="relative z-10 grid grid-cols-[60px_1fr_120px_110px_110px] border-b border-nano-cyan/40 bg-nano-bgAlt">
                 {["#", "Заголовок", "Тема", "Дата", "Источник"].map((h) => (
@@ -215,7 +211,7 @@ export default function Control() {
                 </a>
               </div>
             </div>
-          </details>
+          )}
         </div>
 
         <p className="font-mono text-[10px] text-nano-white/45 mt-2 leading-relaxed">

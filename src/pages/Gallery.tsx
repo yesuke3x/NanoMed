@@ -54,8 +54,14 @@ export default function Gallery() {
         <article className="neon-card overflow-hidden flex flex-col">
           <div className="relative aspect-square overflow-hidden border-b border-nano-cyan/30">
             <img
-              src="/media/character.png"
+              src={REL("character.png")}
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (!img.src.endsWith("/media/character.png")) img.src = "/media/character.png";
+              }}
               alt="Илон Маск — визионер Neuralink"
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-nano-bg/85 via-transparent to-transparent" />
@@ -93,7 +99,7 @@ export default function Gallery() {
               controls
               preload="metadata"
               className="w-full h-full object-cover"
-              poster="/media/character.png"
+              poster={REL("character.png")}
             >
               <source src={REL("promo-cinematic.mp4")} type="video/mp4" />
               <source src="/media/promo-cinematic.mp4" type="video/mp4" />
@@ -129,7 +135,7 @@ export default function Gallery() {
                 controls
                 preload="metadata"
                 className="w-full h-full object-cover"
-                poster="/media/character.png"
+                poster={REL("character.png")}
               >
                 <source src={REL("edu-nanotech.mp4")} type="video/mp4" />
                 <source src="/media/edu-nanotech.mp4" type="video/mp4" />
