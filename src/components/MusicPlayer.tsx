@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
-/* TODO: загрузите фоновую музыку Suno AI в GitHub Releases (тег v1.0)
-   и замените URL ниже на:
-   https://github.com/[USERNAME]/NanoMed/releases/download/v1.0/background-music.mp3 */
-const MUSIC_URL = "/audio/soundtrack.mp3";
+/* GitHub Releases v1.0 — yesuke3x/NanoMed
+   Архив-источник:
+   https://drive.google.com/drive/u/0/folders/1j9GMKmWkecr0pyWsMW8_ahJlK4_p7xSj */
+const MUSIC_URL =
+  "https://github.com/yesuke3x/NanoMed/releases/download/v1.0/soundtrack.mp3";
+const FALLBACK_URL = "/media/soundtrack.mp3";
 
 export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -33,18 +35,27 @@ export default function MusicPlayer() {
     <>
       <audio ref={audioRef} loop preload="none">
         <source src={MUSIC_URL} type="audio/mpeg" />
+        <source src={FALLBACK_URL} type="audio/mpeg" />
       </audio>
 
+      {/* Bottom-LEFT — выровнено по высоте с Tidio чат-баблом (он bottom:9px right:9px, ~60x60). */}
       <button
         onClick={toggle}
         aria-label={playing ? "Выключить музыку" : "Включить музыку"}
-        className="fixed bottom-6 right-6 z-[1000] w-12 h-12 rounded-full glass-card grid place-items-center text-nano-cyan shadow-glow-cyan hover:scale-110 transition-transform duration-300"
-        style={{ borderColor: "rgba(0,245,255,0.6)" }}
+        className="fixed z-[1000] grid place-items-center text-nano-cyan transition-transform duration-300 hover:scale-110"
+        style={{
+          bottom: "20px",
+          left: "20px",
+          width: "64px",
+          height: "64px",
+          clipPath: "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)",
+          background: "rgba(31, 8, 64, 0.85)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 42, 157, 0.6)",
+          boxShadow: "0 0 20px rgba(255, 42, 157, 0.45), 0 0 40px rgba(176, 38, 255, 0.18)",
+        }}
       >
-        <span className="text-lg leading-none">{playing ? "🔊" : "🔇"}</span>
-        {playing && (
-          <span className="absolute inset-0 rounded-full animate-pulse-glow pointer-events-none" />
-        )}
+        <span className="text-2xl leading-none">{playing ? "🔊" : "🔇"}</span>
       </button>
     </>
   );

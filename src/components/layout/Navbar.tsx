@@ -24,10 +24,11 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 9999 }}
+      className={`transition-all duration-300 ${
         scrolled
-          ? "bg-nano-bg/85 backdrop-blur-xl border-b border-nano-cyan/30"
-          : "bg-nano-bg/40 backdrop-blur-md border-b border-transparent"
+          ? "bg-nano-bg/95 backdrop-blur-xl border-b border-nano-cyan/30 shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+          : "bg-nano-bg/90 backdrop-blur-md border-b border-nano-cyan/15 shadow-[0_2px_12px_rgba(0,0,0,0.4)]"
       }`}
     >
       <nav className="max-w-screen-xl mx-auto px-6 flex items-center justify-between h-16">

@@ -43,6 +43,14 @@ export default function Footer() {
           <p className="font-mono text-xs text-nano-cyan/80 tracking-wider">
             ☎ +7 747 621 21 76
           </p>
+          <a
+            href="https://drive.google.com/drive/u/0/folders/1j9GMKmWkecr0pyWsMW8_ahJlK4_p7xSj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[11px] text-nano-green hover:text-nano-cyan tracking-widest underline-offset-4 hover:underline"
+          >
+            📁 Исходники проекта (Google Drive) →
+          </a>
         </div>
 
         {/* Info grid */}

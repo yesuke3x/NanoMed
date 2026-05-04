@@ -205,14 +205,16 @@ export default function Home() {
           </div>
 
           <div className="glass-card p-6 flex flex-col justify-center gap-3">
-            <audio controls className="w-full" style={{ accentColor: "#00F5FF" }}>
-              {/* TODO: загрузите .mp3 в GitHub Releases v1.0 и замените src */}
-              <source src="/audio/soundtrack.mp3" type="audio/mpeg" />
+            <audio controls className="w-full" style={{ accentColor: "#FF2A9D" }}>
+              <source src="https://github.com/yesuke3x/NanoMed/releases/download/v1.0/soundtrack.mp3" type="audio/mpeg" />
+              <source src="/media/soundtrack.mp3" type="audio/mpeg" />
               Ваш браузер не поддерживает HTML5 audio.
             </audio>
             <div className="ai-tag">
-              🎵 Suno AI · Промпт: <em>ambient cyberpunk medical, slow BPM 80, synthesizer pads,
-              futuristic hospital atmosphere, no lyrics, key: D minor</em>
+              🎵 <strong className="text-nano-cyan">Suno</strong> · Промпт: <em>Calm futuristic ambient track for a medical
+              sci-fi presentation. Slow meditative tempo. Instrumentation includes soft synthesizers,
+              light electronic pulses resembling a slow heartbeat, and ethereal strings. Cinematic,
+              professional, no vocals, continuous smooth flow.</em>
             </div>
           </div>
         </div>
