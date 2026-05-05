@@ -13,11 +13,8 @@ const REL = (file: string) =>
 const DRIVE_URL =
   "https://drive.google.com/drive/u/0/folders/1j9GMKmWkecr0pyWsMW8_ahJlK4_p7xSj";
 
-/* iframe-эмбед Google Sheets (Zapier output).
-   Чтобы включить:  File → Share → Publish to web → Embed,
-   скопируйте URL из <iframe src="..."> и вставьте сюда вместо "".
-   Пока строка пустая — рендерится статичный снапшот из NanoMed.xlsx. */
-const ZAPIER_IFRAME_URL = "";
+const ZAPIER_IFRAME_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOF5SkduQh1NNa0w5xvKDR47eIAZo0QtH9nipCRsczq9Vu1ab6IiQZHg-Fqe4i2KbKJpz0rPeBMB8d/pubhtml?widget=true&headers=false";
 
 const SYSTEM_PROMPT = `Ты — медицинский ИИ-ассистент клиники NANO MED.
 Специализируешься на нанотехнологиях в медицине.
@@ -213,13 +210,6 @@ export default function Control() {
             </div>
           )}
         </div>
-
-        <p className="font-mono text-[10px] text-nano-white/45 mt-2 leading-relaxed">
-          ⓘ Чтобы iframe-эмбед заработал — опубликуйте Google Sheet
-          (File → Share → Publish to web → Embed) и вставьте URL в&nbsp;
-          <code className="text-nano-green">ZAPIER_IFRAME_URL</code> в&nbsp;
-          <code className="text-nano-cyan">src/pages/Control.tsx</code>.
-        </p>
 
         <div className="glass-card p-4 mt-4 ai-tag">
           ⚡ <strong className="text-nano-cyan">Zapier</strong> · Промпт-инструкция агента:&nbsp;

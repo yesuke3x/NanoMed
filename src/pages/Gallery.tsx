@@ -163,20 +163,6 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* Hosting note */}
-      <div className="max-w-screen-xl mx-auto px-6">
-        <div className="glass-card p-6 border-l-2 border-l-nano-green">
-          <p className="nano-label">📦 Хостинг медиа · GitHub Releases</p>
-          <pre className="font-mono text-[11px] text-nano-white/65 mt-3 whitespace-pre-wrap leading-relaxed">
-{`Все файлы стримятся с GitHub Releases v1.0:
-  → https://github.com/yesuke3x/NanoMed/releases/tag/v1.0
-
-Fallback — локальная папка public/media/ (для dev).
-Архив-источник:
-${DRIVE_URL}`}
-          </pre>
-        </div>
-      </div>
     </div>
   );
 }
