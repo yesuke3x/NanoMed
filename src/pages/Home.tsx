@@ -120,9 +120,14 @@ export default function Home() {
 
             {/* CTA buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <Link to="/control" className="btn-neon btn-neon-primary">
+              <a
+                href="https://wa.me/77474220446"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-neon btn-neon-primary"
+              >
                 Записаться на диагностику <span aria-hidden>→</span>
-              </Link>
+              </a>
               <Link to="/catalog" className="btn-neon btn-neon-outline">
                 Посмотреть услуги
               </Link>

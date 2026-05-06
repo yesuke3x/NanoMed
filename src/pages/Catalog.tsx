@@ -128,7 +128,12 @@ export default function Catalog() {
                 <span className="nano-chip">{s.duration}</span>
               </div>
 
-              <a href="tel:+77474220446" className="btn-neon btn-neon-outline w-full text-xs mt-1">
+              <a
+                href="https://wa.me/77474220446"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-neon btn-neon-outline w-full text-xs mt-1"
+              >
                 Записаться →
               </a>
             </article>
